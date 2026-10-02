@@ -1,0 +1,44 @@
+{
+  "swissEphemeris": {
+    "repository": "https://github.com/aloistr/swisseph.git",
+    "commit": "aacf962d19d79f8bc921dbcdaacf306d85be1917",
+    "version": "2.10.03"
+  },
+  "emscripten": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.10 (d6c521a7f05449857c76bd99e396895583cf2083)",
+  "flags": [
+    "-O3",
+    "-ffp-contract=off",
+    "-fno-fast-math",
+    "-sMODULARIZE=1",
+    "-sEXPORT_ES6=1",
+    "-sEXPORT_NAME=createSwissEph",
+    "-sENVIRONMENT=web,worker,node",
+    "-sFILESYSTEM=1",
+    "-sFORCE_FILESYSTEM=1",
+    "-sALLOW_MEMORY_GROWTH=1",
+    "-sSTACK_SIZE=1048576",
+    "-sASSERTIONS=0",
+    "-sEXPORTED_FUNCTIONS=_swe_version,_swe_set_ephe_path,_swe_close,_swe_calc,_swe_calc_ut,_swe_get_planet_name,_swe_set_sid_mode,_swe_get_ayanamsa_ex,_swe_get_ayanamsa_ex_ut,_swe_get_ayanamsa_name,_swe_get_current_file_data,_swe_julday,_swe_revjul,_swe_utc_to_jd,_swe_jdet_to_utc,_swe_jdut1_to_utc,_swe_deltat_ex,_swe_sidtime,_swe_houses_ex2,_swe_houses_armc_ex2,_swe_house_name,_swe_set_topo,_swe_rise_trans,_swe_azalt,_swe_sol_eclipse_when_glob,_swe_sol_eclipse_where,_swe_sol_eclipse_how,_swe_lun_eclipse_when,_swe_lun_eclipse_how,_swe_fixstar2,_swe_fixstar2_ut,_swe_fixstar2_mag,_swe_degnorm,_swe_difdeg2n,_malloc,_free",
+    "-sEXPORTED_RUNTIME_METHODS=FS,HEAPF64,HEAP32,HEAPU8,UTF8ToString,stringToUTF8,lengthBytesUTF8"
+  ],
+  "sources": [
+    "swedate.c",
+    "swehouse.c",
+    "swejpl.c",
+    "swemmoon.c",
+    "swemplan.c",
+    "sweph.c",
+    "swephlib.c",
+    "swecl.c",
+    "swehel.c"
+  ],
+  "outputs": {
+    "swisseph.mjs": "3ef37c550bb0ffb0a5f6f9614892ce86c67d9c8fcf2d68ab71f7c101acf88a27",
+    "swisseph.wasm": "918cd7be4964a18449caf1b557de1c1bcf35ff65f9c4a58341beb3b7e3b9d576"
+  },
+  "dataFiles": {
+    "sepl_18.se1": "ca1393ceab3a44fbc895887cf789c68819ae6a1cbc9b22225872dbe4ccd99a66",
+    "semo_18.se1": "1ca07bd67c24374d77226180c20a4f9996cba013697894810518e7eb582ca4f7",
+    "sefstars.txt": "18b0dcafbe5b7240773daba2c038a325f5b3fc4163f61e0a7f4e92abd4f517c6"
+  }
+}

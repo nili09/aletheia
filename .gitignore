@@ -8,3 +8,7 @@ apps/web/test-results/
 apps/web/playwright-report/
 .DS_Store
 Thumbs.db
+
+# Local toolchains (Emscripten SDK, Swiss Ephemeris sources): see docs/ENGINE.md
+.tools/
+.claude/

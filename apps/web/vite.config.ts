@@ -37,15 +37,33 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Offline app shell: precache the built shell, scripts, styles and self-hosted fonts.
-        globPatterns: ['**/*.{html,js,css,woff2,svg,png,webmanifest}'],
+        // Offline app shell: precache the built shell, scripts (including the engine worker),
+        // styles, self-hosted fonts and the Swiss Ephemeris WebAssembly.
+        globPatterns: ['**/*.{html,js,css,woff2,svg,png,webmanifest,wasm}'],
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
+        // Ephemeris data (1.9 MB) and the JPL reference fixture are not precached: the engine
+        // fetches them the first time it needs them, and this caches each one then. Their
+        // names carry a content hash, so a cached copy is never stale.
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => /\/assets\/[^/]+\.(?:se1|txt|json)$/.test(url.pathname),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'aletheia-ephemeris',
+              expiration: { maxEntries: 16, purgeOnQuotaError: false },
+              cacheableResponse: { statuses: [200] },
+            },
+          },
+        ],
       },
     }),
   ],
   build: {
     target: 'es2022',
+  },
+  worker: {
+    format: 'es',
   },
   test: {
     include: ['src/**/*.test.{ts,tsx}'],

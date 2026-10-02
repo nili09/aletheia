@@ -1,4 +1,6 @@
+import type { HTMLAttributes } from 'react';
 import { formatClock, formatLongDate, formatUtcOffset } from './time.ts';
+import { useLongPress } from './useLongPress.ts';
 import { useNow } from './useNow.ts';
 
 const RING_R = 470;
@@ -15,12 +17,12 @@ const ticks = Array.from({ length: 60 }, (_, i) => {
 });
 
 /** The face itself: a pure function of the instant, so it renders identically in tests. */
-export function NowFace({ now }: { now: Date }) {
+export function NowFace({ now, dialProps }: { now: Date; dialProps?: HTMLAttributes<HTMLDivElement> }) {
   const second = now.getSeconds();
 
   return (
     <main className="now">
-      <div className="dial">
+      <div className="dial" {...dialProps}>
         <svg viewBox="-500 -500 1000 1000" aria-hidden="true" className="dial-svg">
           <circle r={RING_R} className="ring" />
           {ticks.map((t) => (
@@ -49,6 +51,24 @@ export function NowFace({ now }: { now: Date }) {
   );
 }
 
-export function NowScreen() {
-  return <NowFace now={useNow()} />;
+/** Now. Pressing and holding the ring opens the hidden Truth screen. */
+export function NowScreen({ onOpenTruth }: { onOpenTruth: () => void }) {
+  const longPress = useLongPress(onOpenTruth);
+  return (
+    <NowFace
+      now={useNow()}
+      dialProps={{
+        ...longPress,
+        role: 'button',
+        tabIndex: 0,
+        'aria-label': 'Truth: press and hold the ring',
+        onKeyDown: (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onOpenTruth();
+          }
+        },
+      }}
+    />
+  );
 }

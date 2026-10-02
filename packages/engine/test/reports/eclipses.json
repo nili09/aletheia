@@ -1,0 +1,167 @@
+{
+  "generated": "npm test -w @aletheia/engine",
+  "worstSolarSeconds": 4.672032594680786,
+  "worstLunarSeconds": 4.662658274173737,
+  "rows": [
+    {
+      "kind": "solar",
+      "date": "1956-06-08",
+      "nasaType": "T",
+      "ourType": "total",
+      "nasaTD": "21:20:39",
+      "residualSeconds": -1.2192249298095703
+    },
+    {
+      "kind": "solar",
+      "date": "1970-03-07",
+      "nasaType": "T",
+      "ourType": "total",
+      "nasaTD": "17:38:30",
+      "residualSeconds": -0.07258057594299316
+    },
+    {
+      "kind": "solar",
+      "date": "1973-12-24",
+      "nasaType": "A",
+      "ourType": "annular",
+      "nasaTD": "15:02:44",
+      "residualSeconds": -0.38128942251205444
+    },
+    {
+      "kind": "solar",
+      "date": "1976-04-29",
+      "nasaType": "A",
+      "ourType": "annular",
+      "nasaTD": "10:24:18",
+      "residualSeconds": -0.3676101565361023
+    },
+    {
+      "kind": "solar",
+      "date": "1988-09-11",
+      "nasaType": "A",
+      "ourType": "annular",
+      "nasaTD": "04:44:29",
+      "residualSeconds": -0.343148410320282
+    },
+    {
+      "kind": "solar",
+      "date": "1990-07-22",
+      "nasaType": "T",
+      "ourType": "total",
+      "nasaTD": "03:03:07",
+      "residualSeconds": 1.981481909751892
+    },
+    {
+      "kind": "solar",
+      "date": "1996-10-12",
+      "nasaType": "P",
+      "ourType": "partial",
+      "nasaTD": "14:03:04",
+      "residualSeconds": -4.672032594680786
+    },
+    {
+      "kind": "solar",
+      "date": "2036-02-27",
+      "nasaType": "P",
+      "ourType": "partial",
+      "nasaTD": "04:46:49",
+      "residualSeconds": -4.243549704551697
+    },
+    {
+      "kind": "solar",
+      "date": "2047-12-16",
+      "nasaType": "P",
+      "ourType": "partial",
+      "nasaTD": "23:50:12",
+      "residualSeconds": 2.371501922607422
+    },
+    {
+      "kind": "solar",
+      "date": "2050-05-20",
+      "nasaType": "H",
+      "ourType": "hybrid",
+      "nasaTD": "20:42:50",
+      "residualSeconds": 2.8922393918037415
+    },
+    {
+      "kind": "lunar",
+      "date": "1952-08-05",
+      "nasaType": "P",
+      "ourType": "partial",
+      "nasaTD": "19:47:55",
+      "residualSeconds": 0.13836175203323364
+    },
+    {
+      "kind": "lunar",
+      "date": "1963-07-06",
+      "nasaType": "P",
+      "ourType": "partial",
+      "nasaTD": "22:02:59",
+      "residualSeconds": 2.740761637687683
+    },
+    {
+      "kind": "lunar",
+      "date": "1968-10-06",
+      "nasaType": "T",
+      "ourType": "total",
+      "nasaTD": "11:42:35",
+      "residualSeconds": -1.7315536737442017
+    },
+    {
+      "kind": "lunar",
+      "date": "1971-02-10",
+      "nasaType": "T",
+      "ourType": "total",
+      "nasaTD": "07:45:21",
+      "residualSeconds": -0.804099440574646
+    },
+    {
+      "kind": "lunar",
+      "date": "1978-03-24",
+      "nasaType": "T-",
+      "ourType": "total",
+      "nasaTD": "16:23:11",
+      "residualSeconds": 0.6537884473800659
+    },
+    {
+      "kind": "lunar",
+      "date": "1996-04-04",
+      "nasaType": "T-",
+      "ourType": "total",
+      "nasaTD": "00:10:47",
+      "residualSeconds": 1.8305674195289612
+    },
+    {
+      "kind": "lunar",
+      "date": "2002-05-26",
+      "nasaType": "N",
+      "ourType": "penumbral",
+      "nasaTD": "12:04:26",
+      "residualSeconds": -4.662658274173737
+    },
+    {
+      "kind": "lunar",
+      "date": "2016-09-16",
+      "nasaType": "N",
+      "ourType": "penumbral",
+      "nasaTD": "18:55:27",
+      "residualSeconds": 4.292432963848114
+    },
+    {
+      "kind": "lunar",
+      "date": "2028-07-06",
+      "nasaType": "P",
+      "ourType": "partial",
+      "nasaTD": "18:20:57",
+      "residualSeconds": -3.508932888507843
+    },
+    {
+      "kind": "lunar",
+      "date": "2031-05-07",
+      "nasaType": "N",
+      "ourType": "penumbral",
+      "nasaTD": "03:52:02",
+      "residualSeconds": 3.5398319363594055
+    }
+  ]
+}

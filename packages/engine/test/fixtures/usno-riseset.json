@@ -1,0 +1,418 @@
+{
+ "description": "Rise and set times in UT, to the minute, for the Sun and Moon at sea level.",
+ "source": "US Naval Observatory, Astronomical Applications API v4, https://aa.usno.navy.mil/data/api",
+ "retrieved": "2026-10-02T16:34:54.071Z",
+ "generator": "packages/engine/scripts/fetch-usno-riseset.mjs",
+ "convention": "Upper limb on the horizon with 34' refraction; Moon topocentric; observer at sea level.",
+ "seed": 20261002,
+ "cases": [
+  {
+   "place": {
+    "name": "Ujjain",
+    "lat": 23.1765,
+    "lon": 75.7885
+   },
+   "date": "1956-05-18",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1956-05-18&coords=23.1765,75.7885&tz=0",
+   "sun": {
+    "rise": "00:14",
+    "set": "13:32"
+   },
+   "moon": {
+    "rise": "07:54",
+    "set": "20:20"
+   }
+  },
+  {
+   "place": {
+    "name": "Ujjain",
+    "lat": 23.1765,
+    "lon": 75.7885
+   },
+   "date": "1992-02-24",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1992-02-24&coords=23.1765,75.7885&tz=0",
+   "sun": {
+    "rise": "01:23",
+    "set": "12:57"
+   },
+   "moon": {
+    "rise": "19:09",
+    "set": "05:18"
+   }
+  },
+  {
+   "place": {
+    "name": "Ujjain",
+    "lat": 23.1765,
+    "lon": 75.7885
+   },
+   "date": "1972-04-08",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1972-04-08&coords=23.1765,75.7885&tz=0",
+   "sun": {
+    "rise": "00:43",
+    "set": "13:15"
+   },
+   "moon": {
+    "rise": "21:14",
+    "set": "07:43"
+   }
+  },
+  {
+   "place": {
+    "name": "New Delhi",
+    "lat": 28.6139,
+    "lon": 77.209
+   },
+   "date": "1989-12-28",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1989-12-28&coords=28.6139,77.209&tz=0",
+   "sun": {
+    "rise": "01:43",
+    "set": "12:03"
+   },
+   "moon": {
+    "rise": "01:55",
+    "set": "12:10"
+   }
+  },
+  {
+   "place": {
+    "name": "New Delhi",
+    "lat": 28.6139,
+    "lon": 77.209
+   },
+   "date": "1978-06-24",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1978-06-24&coords=28.6139,77.209&tz=0",
+   "sun": {
+    "rise": "23:55",
+    "set": "13:52"
+   },
+   "moon": {
+    "rise": "16:57",
+    "set": "03:37"
+   }
+  },
+  {
+   "place": {
+    "name": "New Delhi",
+    "lat": 28.6139,
+    "lon": 77.209
+   },
+   "date": "1979-05-18",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1979-05-18&coords=28.6139,77.209&tz=0",
+   "sun": {
+    "rise": "23:59",
+    "set": "13:36"
+   },
+   "moon": {
+    "rise": "19:20",
+    "set": "05:53"
+   }
+  },
+  {
+   "place": {
+    "name": "Chennai",
+    "lat": 13.0827,
+    "lon": 80.2707
+   },
+   "date": "2044-09-22",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2044-09-22&coords=13.0827,80.2707&tz=0",
+   "sun": {
+    "rise": "00:28",
+    "set": "12:35"
+   },
+   "moon": {
+    "rise": "01:00",
+    "set": "13:10"
+   }
+  },
+  {
+   "place": {
+    "name": "Chennai",
+    "lat": 13.0827,
+    "lon": 80.2707
+   },
+   "date": "2037-02-11",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2037-02-11&coords=13.0827,80.2707&tz=0",
+   "sun": {
+    "rise": "01:03",
+    "set": "12:44"
+   },
+   "moon": {
+    "rise": "22:47",
+    "set": "09:41"
+   }
+  },
+  {
+   "place": {
+    "name": "Chennai",
+    "lat": 13.0827,
+    "lon": 80.2707
+   },
+   "date": "2048-12-09",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2048-12-09&coords=13.0827,80.2707&tz=0",
+   "sun": {
+    "rise": "00:50",
+    "set": "12:13"
+   },
+   "moon": {
+    "rise": "04:13",
+    "set": "16:12"
+   }
+  },
+  {
+   "place": {
+    "name": "Kolkata",
+    "lat": 22.5726,
+    "lon": 88.3639
+   },
+   "date": "1996-10-29",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1996-10-29&coords=22.5726,88.3639&tz=0",
+   "sun": {
+    "rise": "00:09",
+    "set": "11:31"
+   },
+   "moon": {
+    "rise": "13:53",
+    "set": "02:28"
+   }
+  },
+  {
+   "place": {
+    "name": "Kolkata",
+    "lat": 22.5726,
+    "lon": 88.3639
+   },
+   "date": "1994-08-02",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1994-08-02&coords=22.5726,88.3639&tz=0",
+   "sun": {
+    "rise": "23:39",
+    "set": "12:47"
+   },
+   "moon": {
+    "rise": "19:48",
+    "set": "08:36"
+   }
+  },
+  {
+   "place": {
+    "name": "Kolkata",
+    "lat": 22.5726,
+    "lon": 88.3639
+   },
+   "date": "1968-12-30",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1968-12-30&coords=22.5726,88.3639&tz=0",
+   "sun": {
+    "rise": "00:46",
+    "set": "11:32"
+   },
+   "moon": {
+    "rise": "08:03",
+    "set": "21:46"
+   }
+  },
+  {
+   "place": {
+    "name": "Quito",
+    "lat": -0.1807,
+    "lon": -78.4678
+   },
+   "date": "1969-07-08",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1969-07-08&coords=-0.1807,-78.4678&tz=0",
+   "sun": {
+    "rise": "11:16",
+    "set": "23:22"
+   },
+   "moon": {
+    "rise": "06:20",
+    "set": "18:42"
+   }
+  },
+  {
+   "place": {
+    "name": "Quito",
+    "lat": -0.1807,
+    "lon": -78.4678
+   },
+   "date": "1974-11-12",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1974-11-12&coords=-0.1807,-78.4678&tz=0",
+   "sun": {
+    "rise": "10:54",
+    "set": "23:02"
+   },
+   "moon": {
+    "rise": "09:32",
+    "set": "21:58"
+   }
+  },
+  {
+   "place": {
+    "name": "Quito",
+    "lat": -0.1807,
+    "lon": -78.4678
+   },
+   "date": "1967-06-12",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1967-06-12&coords=-0.1807,-78.4678&tz=0",
+   "sun": {
+    "rise": "11:10",
+    "set": "23:17"
+   },
+   "moon": {
+    "rise": "15:08",
+    "set": "02:39"
+   }
+  },
+  {
+   "place": {
+    "name": "Sydney",
+    "lat": -33.8688,
+    "lon": 151.2093
+   },
+   "date": "1953-01-18",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1953-01-18&coords=-33.8688,151.2093&tz=0",
+   "sun": {
+    "rise": "19:03",
+    "set": "09:08"
+   },
+   "moon": {
+    "rise": "22:57",
+    "set": "10:57"
+   }
+  },
+  {
+   "place": {
+    "name": "Sydney",
+    "lat": -33.8688,
+    "lon": 151.2093
+   },
+   "date": "2028-11-07",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2028-11-07&coords=-33.8688,151.2093&tz=0",
+   "sun": {
+    "rise": "18:48",
+    "set": "08:29"
+   },
+   "moon": {
+    "rise": "13:01",
+    "set": "23:18"
+   }
+  },
+  {
+   "place": {
+    "name": "Sydney",
+    "lat": -33.8688,
+    "lon": 151.2093
+   },
+   "date": "2016-09-26",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2016-09-26&coords=-33.8688,151.2093&tz=0",
+   "sun": {
+    "rise": "19:38",
+    "set": "07:54"
+   },
+   "moon": {
+    "rise": "17:17",
+    "set": "03:26"
+   }
+  },
+  {
+   "place": {
+    "name": "London",
+    "lat": 51.5074,
+    "lon": -0.1278
+   },
+   "date": "2031-01-01",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2031-01-01&coords=51.5074,-0.1278&tz=0",
+   "sun": {
+    "rise": "08:06",
+    "set": "16:02"
+   },
+   "moon": {
+    "rise": "11:30",
+    "set": "01:01"
+   }
+  },
+  {
+   "place": {
+    "name": "London",
+    "lat": 51.5074,
+    "lon": -0.1278
+   },
+   "date": "2004-07-07",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2004-07-07&coords=51.5074,-0.1278&tz=0",
+   "sun": {
+    "rise": "03:53",
+    "set": "20:18"
+   },
+   "moon": {
+    "rise": "23:16",
+    "set": "10:05"
+   }
+  },
+  {
+   "place": {
+    "name": "London",
+    "lat": 51.5074,
+    "lon": -0.1278
+   },
+   "date": "1964-12-21",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1964-12-21&coords=51.5074,-0.1278&tz=0",
+   "sun": {
+    "rise": "08:04",
+    "set": "15:54"
+   },
+   "moon": {
+    "rise": "18:43",
+    "set": "10:30"
+   }
+  },
+  {
+   "place": {
+    "name": "Oslo",
+    "lat": 59.9139,
+    "lon": 10.7522
+   },
+   "date": "1963-09-13",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=1963-09-13&coords=59.9139,10.7522&tz=0",
+   "sun": {
+    "rise": "04:38",
+    "set": "17:47"
+   },
+   "moon": {
+    "rise": "23:37",
+    "set": "16:47"
+   }
+  },
+  {
+   "place": {
+    "name": "Oslo",
+    "lat": 59.9139,
+    "lon": 10.7522
+   },
+   "date": "2039-08-15",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2039-08-15&coords=59.9139,10.7522&tz=0",
+   "sun": {
+    "rise": "03:31",
+    "set": "19:10"
+   },
+   "moon": {
+    "rise": "22:46",
+    "set": "17:33"
+   }
+  },
+  {
+   "place": {
+    "name": "Oslo",
+    "lat": 59.9139,
+    "lon": 10.7522
+   },
+   "date": "2011-04-18",
+   "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2011-04-18&coords=59.9139,10.7522&tz=0",
+   "sun": {
+    "rise": "03:53",
+    "set": "18:41"
+   },
+   "moon": {
+    "rise": "20:08",
+    "set": "03:22"
+   }
+  }
+ ]
+}

@@ -1,0 +1,283 @@
+{
+ "description": "Times of greatest eclipse in Terrestrial Dynamical Time (TD) from NASA Five Millennium Canon catalogues.",
+ "source": "F. Espenak and J. Meeus, NASA GSFC, https://eclipse.gsfc.nasa.gov/",
+ "retrieved": "2026-10-02T16:31:00.874Z",
+ "generator": "packages/engine/scripts/fetch-nasa-eclipses.mjs",
+ "selection": {
+  "seed": 20261002,
+  "firstYear": 1950,
+  "lastYear": 2050,
+  "quota": {
+   "solar": {
+    "T": 3,
+    "A": 3,
+    "H": 1,
+    "P": 3
+   },
+   "lunar": {
+    "T": 4,
+    "P": 3,
+    "N": 3
+   }
+  }
+ },
+ "typeLetters": {
+  "solar": {
+   "T": "total",
+   "A": "annular",
+   "H": "hybrid",
+   "P": "partial"
+  },
+  "lunar": {
+   "T": "total",
+   "P": "partial",
+   "N": "penumbral"
+  }
+ },
+ "eclipses": {
+  "solar": [
+   {
+    "catalogNumber": "09412",
+    "date": "1956-06-08",
+    "greatestTD": "21:20:39",
+    "deltaTSeconds": 32,
+    "lunation": -539,
+    "saros": 146,
+    "type": "T",
+    "qualifier": "p-",
+    "gamma": -0.8934,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09442",
+    "date": "1970-03-07",
+    "greatestTD": "17:38:30",
+    "deltaTSeconds": 40,
+    "lunation": -369,
+    "saros": 139,
+    "type": "T",
+    "qualifier": "p-",
+    "gamma": 0.4473,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09451",
+    "date": "1973-12-24",
+    "greatestTD": "15:02:44",
+    "deltaTSeconds": 44,
+    "lunation": -322,
+    "saros": 141,
+    "type": "A",
+    "qualifier": "p-",
+    "gamma": 0.4171,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09456",
+    "date": "1976-04-29",
+    "greatestTD": "10:24:18",
+    "deltaTSeconds": 47,
+    "lunation": -293,
+    "saros": 128,
+    "type": "A",
+    "qualifier": "-p",
+    "gamma": 0.3378,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09483",
+    "date": "1988-09-11",
+    "greatestTD": "04:44:29",
+    "deltaTSeconds": 56,
+    "lunation": -140,
+    "saros": 144,
+    "type": "A",
+    "qualifier": "p-",
+    "gamma": -0.4681,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09487",
+    "date": "1990-07-22",
+    "greatestTD": "03:03:07",
+    "deltaTSeconds": 57,
+    "lunation": -117,
+    "saros": 126,
+    "type": "T",
+    "qualifier": "-p",
+    "gamma": 0.7597,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09500",
+    "date": "1996-10-12",
+    "greatestTD": "14:03:04",
+    "deltaTSeconds": 62,
+    "lunation": -40,
+    "saros": 153,
+    "type": "P",
+    "qualifier": "t-",
+    "gamma": 1.1227,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09587",
+    "date": "2036-02-27",
+    "greatestTD": "04:46:49",
+    "deltaTSeconds": 82,
+    "lunation": 447,
+    "saros": 150,
+    "type": "P",
+    "qualifier": "t-",
+    "gamma": -1.1942,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html"
+   },
+   {
+    "catalogNumber": "09614",
+    "date": "2047-12-16",
+    "greatestTD": "23:50:12",
+    "deltaTSeconds": 91,
+    "lunation": 593,
+    "saros": 123,
+    "type": "P",
+    "qualifier": "-t",
+    "gamma": -1.0661,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html"
+   },
+   {
+    "catalogNumber": "09619",
+    "date": "2050-05-20",
+    "greatestTD": "20:42:50",
+    "deltaTSeconds": 94,
+    "lunation": 623,
+    "saros": 148,
+    "type": "H",
+    "qualifier": "t-",
+    "gamma": -0.8688,
+    "source": "https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html"
+   }
+  ],
+  "lunar": [
+   {
+    "catalogNumber": "09541",
+    "date": "1952-08-05",
+    "greatestTD": "19:47:55",
+    "deltaTSeconds": 30,
+    "lunation": -587,
+    "saros": 118,
+    "type": "P",
+    "qualifier": "-a",
+    "gamma": -0.7383,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09566",
+    "date": "1963-07-06",
+    "greatestTD": "22:02:59",
+    "deltaTSeconds": 35,
+    "lunation": -452,
+    "saros": 119,
+    "type": "P",
+    "qualifier": "-t",
+    "gamma": 0.6197,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09577",
+    "date": "1968-10-06",
+    "greatestTD": "11:42:35",
+    "deltaTSeconds": 39,
+    "lunation": -387,
+    "saros": 136,
+    "type": "T",
+    "qualifier": "t-",
+    "gamma": 0.3605,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09583",
+    "date": "1971-02-10",
+    "greatestTD": "07:45:21",
+    "deltaTSeconds": 41,
+    "lunation": -358,
+    "saros": 123,
+    "type": "T",
+    "qualifier": "-p",
+    "gamma": 0.2741,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09599",
+    "date": "1978-03-24",
+    "greatestTD": "16:23:11",
+    "deltaTSeconds": 49,
+    "lunation": -270,
+    "saros": 122,
+    "type": "T-",
+    "qualifier": "-p",
+    "gamma": -0.214,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09640",
+    "date": "1996-04-04",
+    "greatestTD": "00:10:47",
+    "deltaTSeconds": 62,
+    "lunation": -47,
+    "saros": 122,
+    "type": "T-",
+    "qualifier": "-p",
+    "gamma": -0.2534,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE1901-2000.html"
+   },
+   {
+    "catalogNumber": "09654",
+    "date": "2002-05-26",
+    "greatestTD": "12:04:26",
+    "deltaTSeconds": 64,
+    "lunation": 29,
+    "saros": 111,
+    "type": "N",
+    "qualifier": "-a",
+    "gamma": 1.1758,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html"
+   },
+   {
+    "catalogNumber": "09687",
+    "date": "2016-09-16",
+    "greatestTD": "18:55:27",
+    "deltaTSeconds": 70,
+    "lunation": 206,
+    "saros": 147,
+    "type": "N",
+    "qualifier": "a-",
+    "gamma": -1.0548,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html"
+   },
+   {
+    "catalogNumber": "09714",
+    "date": "2028-07-06",
+    "greatestTD": "18:20:57",
+    "deltaTSeconds": 77,
+    "lunation": 352,
+    "saros": 120,
+    "type": "P",
+    "qualifier": "-t",
+    "gamma": -0.7903,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html"
+   },
+   {
+    "catalogNumber": "09720",
+    "date": "2031-05-07",
+    "greatestTD": "03:52:02",
+    "deltaTSeconds": 78,
+    "lunation": 387,
+    "saros": 112,
+    "type": "N",
+    "qualifier": "-a",
+    "gamma": -1.0694,
+    "source": "https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html"
+   }
+  ]
+ }
+}

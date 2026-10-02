@@ -1,2 +1,6 @@
 * text=auto eol=lf
 *.png binary
+# Vendored build output and upstream data: keep the exact bytes hashed in vendor/BUILD.json.
+packages/engine/vendor/** binary
+packages/engine/ephe/*.se1 binary
+packages/engine/ephe/*.txt binary

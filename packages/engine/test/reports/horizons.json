@@ -1,0 +1,84 @@
+{
+  "generated": "npm test -w @aletheia/engine",
+  "fixtureRetrieved": "2026-10-02T16:48:45.975Z",
+  "toleranceArcsec": 1,
+  "rows": [
+    {
+      "body": "sun",
+      "n": 60,
+      "worstLongitude": "+0.2116″",
+      "atJdTT": 2417236.495747002,
+      "rmsLongitude": "0.0917″",
+      "maxLatitude": "0.0454″",
+      "worstIcrfSeparation": "0.0011″",
+      "horizonsSource": "DE441",
+      "pass": true
+    },
+    {
+      "body": "moon",
+      "n": 60,
+      "worstLongitude": "+0.2112″",
+      "atJdTT": 2417236.495747002,
+      "rmsLongitude": "0.0918″",
+      "maxLatitude": "0.0447″",
+      "worstIcrfSeparation": "0.0022″",
+      "horizonsSource": "DE441",
+      "pass": true
+    },
+    {
+      "body": "mercury",
+      "n": 60,
+      "worstLongitude": "+0.2114″",
+      "atJdTT": 2417236.495747002,
+      "rmsLongitude": "0.0917″",
+      "maxLatitude": "0.0449″",
+      "worstIcrfSeparation": "0.0016″",
+      "horizonsSource": "DE441",
+      "pass": true
+    },
+    {
+      "body": "venus",
+      "n": 60,
+      "worstLongitude": "+0.2117″",
+      "atJdTT": 2417236.495747002,
+      "rmsLongitude": "0.0916″",
+      "maxLatitude": "0.0454″",
+      "worstIcrfSeparation": "0.0038″",
+      "horizonsSource": "DE441",
+      "pass": true
+    },
+    {
+      "body": "mars",
+      "n": 60,
+      "worstLongitude": "+0.2120″",
+      "atJdTT": 2417236.495747002,
+      "rmsLongitude": "0.0919″",
+      "maxLatitude": "0.0426″",
+      "worstIcrfSeparation": "0.0031″",
+      "horizonsSource": "mar099",
+      "pass": true
+    },
+    {
+      "body": "jupiter",
+      "n": 60,
+      "worstLongitude": "+0.2665″",
+      "atJdTT": 2417236.495747002,
+      "rmsLongitude": "0.0975″",
+      "maxLatitude": "0.0450″",
+      "worstIcrfSeparation": "0.0711″",
+      "horizonsSource": "jup365_merged",
+      "pass": true
+    },
+    {
+      "body": "saturn",
+      "n": 60,
+      "worstLongitude": "+0.2324″",
+      "atJdTT": 2419656.66822,
+      "rmsLongitude": "0.1001″",
+      "maxLatitude": "0.0627″",
+      "worstIcrfSeparation": "0.0481″",
+      "horizonsSource": "sat441l",
+      "pass": true
+    }
+  ]
+}
