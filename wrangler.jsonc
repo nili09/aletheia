@@ -1,0 +1,13 @@
+// Cloudflare Workers static-assets deployment (free plan). See docs/DEPLOY.md.
+// The build command (`npm run build`) produces apps/web/dist; `npx wrangler deploy` uploads it.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Must match the Worker's name in the Cloudflare dashboard.
+  "name": "aletheia",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./apps/web/dist",
+    // Unknown paths load the app shell, so deep links work offline and online.
+    "not_found_handling": "single-page-application"
+  }
+}

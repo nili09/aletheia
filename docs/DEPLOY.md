@@ -1,31 +1,42 @@
 # Deploying
 
-The source lives in a **private** GitHub repository. The app is hosted on **Cloudflare Pages** (free plan, no credit card), which builds and deploys every push to `main`.
+The source lives in a **private** GitHub repository. The app is hosted on **Cloudflare Workers** as static assets (free plan, no credit card). Cloudflare builds and deploys every push to `main`.
 The source is private; the website itself is public to anyone with the link.
 
 GitHub Actions (`.github/workflows/ci.yml`) runs typecheck, unit tests and a build on every push as an independent check.
 
+## How it works
+
+1. Cloudflare clones the repo and runs `npm ci` then the build command, `npm run build`, which writes the app to `apps/web/dist`.
+2. The deploy command, `npx wrangler deploy`, reads `wrangler.jsonc` at the repo root and uploads `apps/web/dist`.
+3. Unknown paths serve the app shell (`not_found_handling: single-page-application`).
+
+Node 22 comes from `.nvmrc`. No environment variables or secrets are needed.
+
 ## One-time setup
 
 1. Sign up at https://dash.cloudflare.com/sign-up (free).
-2. In the dashboard: **Workers & Pages › Create › Pages › Connect to Git**.
-3. Authorise the Cloudflare GitHub app for **only** the `aletheia` repository, then select it.
-4. Build settings:
+2. **Workers & Pages › Create › Import a repository** (Connect to Git), authorising the Cloudflare GitHub app for **only** the `aletheia` repository.
+3. Settings:
 
    | Setting | Value |
    |---|---|
-   | Project name | `aletheia` (becomes `aletheia.pages.dev`; if taken, Cloudflare suggests another) |
+   | Project (Worker) name | `aletheia`, which must equal `name` in `wrangler.jsonc` |
    | Production branch | `main` |
-   | Framework preset | None |
    | Build command | `npm run build` |
-   | Build output directory | `apps/web/dist` |
-   | Root directory | *(leave empty: repository root)* |
+   | Deploy command | `npx wrangler deploy` |
+   | Root directory | *(empty: repository root)* |
 
-   Node 22 is picked up from `.nvmrc`. No environment variables are needed.
+4. Save and deploy.
 
-5. **Save and Deploy.** The first build takes a minute or two.
+The app lives at `https://aletheia.<account-subdomain>.workers.dev/`. The account subdomain is shown in the dashboard under **Workers & Pages › Overview** (right-hand side) and on the Worker's page under **Domains**.
 
-After that, every `git push` to `main` deploys to production, and every other branch gets its own preview URL.
+## Checking a deploy locally
+
+```bash
+npm run build
+npx wrangler deploy --dry-run
+```
 
 ## Base path
 

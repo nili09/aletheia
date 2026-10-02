@@ -1,6 +1,6 @@
 name: CI
 
-# Tests and builds every push. Deployment is done by Cloudflare Pages,
+# Tests and builds every push. Deployment is done by Cloudflare,
 # which builds the same commit itself (see docs/DEPLOY.md).
 on:
   push:
