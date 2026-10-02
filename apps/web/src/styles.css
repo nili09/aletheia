@@ -1,0 +1,170 @@
+/* Jantar Mantar at midnight — tokens from docs/DESIGN.md. */
+:root {
+  --ground: #010101;
+  --text: #ffffff;
+  --sandstone: #bdad96;
+  --marble: #f1f0ea;
+  --accent: #dff140; /* current selection only, as a ~33% fill */
+
+  --font-latin: 'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif;
+  --font-deva-ui: 'Noto Sans Devanagari', sans-serif;
+  --font-deva-verse: 'Tiro Devanagari Sanskrit', serif;
+
+  --ease: cubic-bezier(0, 0, 0.2, 1); /* ease-out */
+  --t: 0.3s;
+  --radius: 2px;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--ground);
+  color: var(--text);
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-latin);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+:lang(sa),
+:lang(hi),
+:lang(mr) {
+  letter-spacing: 0; /* keep the shirorekha joined */
+}
+
+#root {
+  min-height: 100%;
+}
+
+/* ---------- Now ---------- */
+
+.now {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 7dvh, 64px);
+  padding: max(24px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  animation: arrive var(--t) var(--ease) both;
+}
+
+.dial {
+  position: relative;
+  width: min(86vw, 58dvh, 460px);
+  aspect-ratio: 1;
+  container-type: inline-size;
+}
+
+.dial-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--sandstone);
+  stroke-width: 1.25px;
+  vector-effect: non-scaling-stroke;
+}
+
+.tick {
+  stroke: var(--marble);
+  stroke-opacity: 0.22;
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.tick-major {
+  stroke-opacity: 0.5;
+}
+
+.tick-now {
+  stroke: var(--text);
+  stroke-opacity: 1;
+  stroke-width: 1.5px;
+}
+
+.readout {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.clock {
+  display: block;
+  font-size: 16cqi;
+  font-weight: 250;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
+  /* tabular figures still leave colons a little loose; nudge optical centre */
+  margin-left: -0.04em;
+}
+
+.date,
+.zone {
+  margin: 0;
+  font-size: max(12px, 3.6cqi);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.date {
+  margin-top: 5.5cqi;
+  color: rgb(255 255 255 / 0.72);
+}
+
+.zone {
+  color: rgb(255 255 255 / 0.42);
+}
+
+.wordmark {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--sandstone);
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now {
+    animation: none;
+  }
+}

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dev-dist/
+coverage/
+*.tsbuildinfo
+.vite/
+apps/web/test-results/
+apps/web/playwright-report/
+.DS_Store
+Thumbs.db
