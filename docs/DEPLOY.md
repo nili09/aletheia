@@ -29,7 +29,7 @@ Node 22 comes from `.nvmrc`. No environment variables or secrets are needed.
 
 4. Save and deploy.
 
-The app lives at `https://aletheia.<account-subdomain>.workers.dev/`. The account subdomain is shown in the dashboard under **Workers & Pages › Overview** (right-hand side) and on the Worker's page under **Domains**.
+The app lives at **https://aletheia.nileshfx-bin.workers.dev/**.
 
 ## Checking a deploy locally
 

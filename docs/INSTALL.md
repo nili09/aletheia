@@ -2,7 +2,7 @@
 
 Aletheia is a web app that installs to your home screen and then works offline, full screen, like any other app. Nothing to download from an app store.
 
-Open the app's address in your phone's browser first: the link Nilesh sent you (it ends in `.workers.dev`).
+Open the app's address in your phone's browser first: https://aletheia.nileshfx-bin.workers.dev/
 
 ## iPhone and iPad (Safari)
 
