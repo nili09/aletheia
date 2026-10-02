@@ -3,9 +3,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
-// GitHub Pages serves a project site at https://<user>.github.io/<repo>/.
-// Override with BASE_PATH=/ for a custom domain or a user site.
-const base = process.env.BASE_PATH ?? '/aletheia/';
+// Cloudflare Pages serves the app from the site root (https://<project>.pages.dev/).
+// Set BASE_PATH=/sub/path/ only if it is ever hosted under a sub-path.
+const base = process.env.BASE_PATH ?? '/';
 
 const ground = '#010101';
 

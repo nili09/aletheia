@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = 4173;
-const base = process.env.BASE_PATH ?? '/aletheia/';
+const base = process.env.BASE_PATH ?? '/';
 
 export default defineConfig({
   testDir: './e2e',
@@ -21,7 +21,7 @@ export default defineConfig({
     { name: 'pixel-7', use: { ...devices['Pixel 7'] } }, // Chromium
   ],
   webServer: {
-    // Test the production build, served the way GitHub Pages will serve it.
+    // Test the production build, served from the site root as Cloudflare Pages will serve it.
     command: `npm run build && npx vite preview --port ${PORT} --strictPort`,
     url: `http://localhost:${PORT}${base}`,
     reuseExistingServer: !process.env.CI,
