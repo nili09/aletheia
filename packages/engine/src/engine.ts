@@ -16,6 +16,10 @@ import { DEFAULT_RISE_CONVENTION, nextRiseSet, type RiseConvention, type RiseSet
 import { fixedStar, YOGATARAS, type FixedStar, type Yogatara } from './stars.ts';
 import { SwissEph, SwissEphError, type FileData, type LoadOptions } from './swe/swisseph.ts';
 import { instantFromJdTT, instantFromJdUT, instantFromUnixMs, unixMsFromInstant, type Instant } from './time.ts';
+import { buildChart, type Chart } from './jyotish/chart.ts';
+import { kundali, type Kundali } from './jyotish/kundali.ts';
+import { panchang, type Panchang } from './jyotish/panchang.ts';
+import { DEFAULT_JYOTISH, type JyotishSettings } from './jyotish/settings.ts';
 
 export const PLANET_FILES = ['sepl_18.se1', 'semo_18.se1'] as const;
 export const STAR_FILE = 'sefstars.txt';
@@ -150,6 +154,23 @@ export class Engine {
   verifyEvent(e: AstroEvent, s: Pick<Settings, 'ayanamsa' | 'node'> = DEFAULT_SETTINGS): EventCheck {
     this.prepare({ jdTT: e.instant.jdTT }, s.ayanamsa);
     return verifyEvent(this.swe, s.node, e);
+  }
+
+  // ---------- jyotish ----------
+
+  /** The pañcāṅga of the vāra day (sunrise to next sunrise at the place) containing t. */
+  panchang(t: TimeInput, place: Place, s: JyotishSettings = DEFAULT_JYOTISH): Panchang {
+    return panchang(this.swe, this.prepare(t, s.ayanamsa), place, s);
+  }
+
+  /** The chart data the jyotish rules work from. */
+  chart(t: TimeInput, place: Place, s: JyotishSettings = DEFAULT_JYOTISH): Chart {
+    return buildChart(this.swe, this.prepare(t, s.ayanamsa), place, s);
+  }
+
+  /** The full analysis of a chart: vargas, states, Jaimini, aṣṭakavarga, ṣaḍbala, daśās. */
+  kundali(t: TimeInput, place: Place, s: JyotishSettings = DEFAULT_JYOTISH): Kundali {
+    return kundali(this.chart(t, place, s));
   }
 
   // ---------- internals ----------

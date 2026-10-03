@@ -29,3 +29,18 @@ export { NAKSHATRAS, RASHIS, nakshatraPada, signIndex } from './zodiac.ts';
 export { compareWithHorizons, HORIZONS_BODIES, LONGITUDE_TOLERANCE_ARCSEC } from './verify/horizons.ts';
 export type { BodyReport, HorizonsFixture, HorizonsReport } from './verify/horizons.ts';
 export { SwissEphError } from './swe/swisseph.ts';
+
+// Jyotish: rules on the sky, each tied to its source (src/jyotish/sources.ts, docs/CANON.md).
+export * from './jyotish/core.ts';
+export * from './jyotish/dignity.ts';
+export * from './jyotish/vargas.ts';
+export * from './jyotish/panchang.ts';
+export * from './jyotish/chart.ts';
+export * from './jyotish/states.ts';
+export * from './jyotish/jaimini.ts';
+export * from './jyotish/dasha.ts';
+export * from './jyotish/ashtakavarga.ts';
+export * from './jyotish/shadbala.ts';
+export * from './jyotish/kundali.ts';
+export * from './jyotish/settings.ts';
+export * from './jyotish/sources.ts';

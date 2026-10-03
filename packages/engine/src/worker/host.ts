@@ -153,6 +153,14 @@ export class EngineHost {
         this.fixture ??= this.resources.horizonsFixture();
         return compareWithHorizons(engine, await this.fixture) as R;
       }
+      case 'panchang': {
+        const { time, place, settings } = params as Params<'panchang'>;
+        return engine.panchang(time, place, settings) as R;
+      }
+      case 'kundali': {
+        const { time, place, settings } = params as Params<'kundali'>;
+        return engine.kundali(time, place, settings) as R;
+      }
     }
     throw new Error(`unknown method ${String(method)}`);
   }

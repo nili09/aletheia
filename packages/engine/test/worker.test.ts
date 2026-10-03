@@ -3,9 +3,9 @@
  * message channel. Checks lazy file loading, the cache, ordering and error reporting.
  */
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_SETTINGS, type EpheFile, type HorizonsFixture } from '../src/index.ts';
+import { DEFAULT_JYOTISH, DEFAULT_SETTINGS, type EpheFile, type HorizonsFixture } from '../src/index.ts';
 import { EngineClient, serveEngine, type Request, type Response, type WorkerLike } from '../src/worker/index.ts';
-import { fixture, readEphe } from './helpers.ts';
+import { fixture, loadEngine, readEphe } from './helpers.ts';
 
 function channel(onFile: (name: EpheFile) => void) {
   const toHost: Array<(e: { data: Request }) => void> = [];
@@ -77,5 +77,14 @@ describe('engine worker protocol', () => {
     const report = await client.call('horizonsCheck', {});
     expect(report.count).toBe(420);
     expect(report.pass).toBe(true);
+  });
+
+  it('serves the pañcāṅga and the kundali, unchanged by the structured clone', async () => {
+    const { client } = channel(() => undefined);
+    const engine = await loadEngine();
+    const time = { unixMs: Date.parse('2026-10-03T06:30:00Z') };
+    const settings = { ...DEFAULT_JYOTISH };
+    expect(await client.call('panchang', { time, place, settings })).toEqual(engine.panchang(time, place, settings));
+    expect(await client.call('kundali', { time, place, settings })).toEqual(engine.kundali(time, place, settings));
   });
 });

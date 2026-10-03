@@ -15,6 +15,7 @@
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json",
     "build:wasm": "node wasm/build.mjs",
-    "fetch:references": "node scripts/fetch-horizons-positions.mjs && node scripts/fetch-horizons-sidereal.mjs && node scripts/fetch-nasa-eclipses.mjs && node scripts/fetch-nasa-phases.mjs && node scripts/fetch-usno-riseset.mjs"
+    "fetch:references": "node scripts/fetch-horizons-positions.mjs && node scripts/fetch-horizons-sidereal.mjs && node scripts/fetch-nasa-eclipses.mjs && node scripts/fetch-nasa-phases.mjs && node scripts/fetch-usno-riseset.mjs && node scripts/fetch-drik-panchang.mjs",
+    "fetch:verses": "node scripts/fetch-verses.mjs"
   }
 }

@@ -13,6 +13,9 @@ import type { FileData } from '../swe/swisseph.ts';
 import type { Instant } from '../time.ts';
 import type { HorizonsReport } from '../verify/horizons.ts';
 import type { Settings, TimeInput } from '../engine.ts';
+import type { Kundali } from '../jyotish/kundali.ts';
+import type { Panchang } from '../jyotish/panchang.ts';
+import type { JyotishSettings } from '../jyotish/settings.ts';
 
 /** Everything the Truth screen shows for one instant, in one round trip. */
 export interface Snapshot {
@@ -42,6 +45,8 @@ export interface Methods {
   events: { params: { start: TimeInput; end: TimeInput; kinds?: EventKind[]; grahas?: Graha[]; settings: Settings }; result: AstroEvent[] };
   nextEvents: { params: { time: TimeInput; count: number; kinds?: EventKind[]; grahas?: Graha[]; settings: Settings }; result: Array<AstroEvent & { check: EventCheck; unixMs: number }> };
   horizonsCheck: { params: Record<string, never>; result: HorizonsReport };
+  panchang: { params: { time: TimeInput; place: Place; settings: JyotishSettings }; result: Panchang };
+  kundali: { params: { time: TimeInput; place: Place; settings: JyotishSettings }; result: Kundali };
 }
 
 export type Method = keyof Methods;

@@ -1,0 +1,907 @@
+{
+  "description": "Day pañcāṅgas from Drik Panchang: times to the minute, IST on the page, stored here as UTC. Names in Drik’s spelling.",
+  "source": "https://www.drikpanchang.com/panchang/day-panchang.html",
+  "retrieved": "2026-10-03T05:36:56.170Z",
+  "generator": "packages/engine/scripts/fetch-drik-panchang.mjs",
+  "places": {
+    "New Delhi": {
+      "geonameId": 1261481,
+      "latitude": 28.63576,
+      "longitude": 77.22445
+    },
+    "Ujjain": {
+      "geonameId": 1253914,
+      "latitude": 23.18239,
+      "longitude": 75.77643
+    },
+    "Chennai": {
+      "geonameId": 1264527,
+      "latitude": 13.08784,
+      "longitude": 80.27847
+    },
+    "Mumbai": {
+      "geonameId": 1275339,
+      "latitude": 19.07283,
+      "longitude": 72.88261
+    }
+  },
+  "days": [
+    {
+      "place": "New Delhi",
+      "date": "1990-01-15",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1261481&date=15/01/1990",
+      "sunrise": "1990-01-15T01:45Z",
+      "sunset": "1990-01-15T12:16Z",
+      "tithi": [
+        {
+          "name": "Chaturthi",
+          "upto": "1990-01-15T02:48Z"
+        },
+        {
+          "name": "Panchami",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Purva Phalguni",
+          "upto": "1990-01-15T17:34Z"
+        },
+        {
+          "name": "Uttara Phalguni",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Saubhagya",
+          "upto": "1990-01-15T08:49Z"
+        },
+        {
+          "name": "Shobhana",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Balava",
+          "upto": "1990-01-15T02:48Z"
+        },
+        {
+          "name": "Kaulava",
+          "upto": "1990-01-15T15:18Z"
+        },
+        {
+          "name": "Taitila",
+          "upto": null
+        }
+      ],
+      "weekday": "Somawara",
+      "paksha": "Krishna Paksha",
+      "amanta": "Pausha",
+      "purnimanta": "Magha",
+      "shakaSamvat": "1911 Shukla",
+      "rahuKalam": {
+        "start": "1990-01-15T03:04Z",
+        "end": "1990-01-15T04:23Z"
+      },
+      "yamaganda": {
+        "start": "1990-01-15T05:42Z",
+        "end": "1990-01-15T07:01Z"
+      },
+      "gulikai": {
+        "start": "1990-01-15T08:19Z",
+        "end": "1990-01-15T09:38Z"
+      },
+      "abhijit": {
+        "start": "1990-01-15T06:40Z",
+        "end": "1990-01-15T07:22Z"
+      }
+    },
+    {
+      "place": "Ujjain",
+      "date": "1995-06-21",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1253914&date=21/06/1995",
+      "sunrise": "1995-06-21T00:12Z",
+      "sunset": "1995-06-21T13:45Z",
+      "tithi": [
+        {
+          "name": "Navami",
+          "upto": "1995-06-21T11:14Z"
+        },
+        {
+          "name": "Dashami",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Revati",
+          "upto": "1995-06-21T23:20Z"
+        },
+        {
+          "name": "Ashwini",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Shobhana",
+          "upto": "1995-06-21T23:59Z"
+        },
+        {
+          "name": "Atiganda",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Garaja",
+          "upto": "1995-06-21T11:14Z"
+        },
+        {
+          "name": "Vanija",
+          "upto": "1995-06-21T23:59Z"
+        },
+        {
+          "name": "Vishti",
+          "upto": null
+        }
+      ],
+      "weekday": "Budhawara",
+      "paksha": "Krishna Paksha",
+      "amanta": "Jyeshtha",
+      "purnimanta": "Ashadha",
+      "shakaSamvat": "1917 Yuva",
+      "rahuKalam": {
+        "start": "1995-06-21T06:59Z",
+        "end": "1995-06-21T08:40Z"
+      },
+      "yamaganda": {
+        "start": "1995-06-21T01:53Z",
+        "end": "1995-06-21T03:35Z"
+      },
+      "gulikai": {
+        "start": "1995-06-21T05:17Z",
+        "end": "1995-06-21T06:59Z"
+      },
+      "abhijit": null
+    },
+    {
+      "place": "Chennai",
+      "date": "2000-03-20",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date=20/03/2000",
+      "sunrise": "2000-03-20T00:43Z",
+      "sunset": "2000-03-20T12:50Z",
+      "tithi": [
+        {
+          "name": "Purnima",
+          "upto": "2000-03-20T04:44Z"
+        },
+        {
+          "name": "Pratipada",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Uttara Phalguni",
+          "upto": "2000-03-20T11:48Z"
+        },
+        {
+          "name": "Hasta",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Ganda",
+          "upto": "2000-03-20T06:53Z"
+        },
+        {
+          "name": "Vriddhi",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Bava",
+          "upto": "2000-03-20T04:44Z"
+        },
+        {
+          "name": "Balava",
+          "upto": "2000-03-20T16:14Z"
+        },
+        {
+          "name": "Kaulava",
+          "upto": null
+        }
+      ],
+      "weekday": "Somawara",
+      "paksha": "Shukla Paksha",
+      "amanta": "Phalguna",
+      "purnimanta": "Phalguna",
+      "shakaSamvat": "1921 Pramathi",
+      "rahuKalam": {
+        "start": "2000-03-20T02:14Z",
+        "end": "2000-03-20T03:45Z"
+      },
+      "yamaganda": {
+        "start": "2000-03-20T05:16Z",
+        "end": "2000-03-20T06:46Z"
+      },
+      "gulikai": {
+        "start": "2000-03-20T08:17Z",
+        "end": "2000-03-20T09:48Z"
+      },
+      "abhijit": {
+        "start": "2000-03-20T06:22Z",
+        "end": "2000-03-20T07:11Z"
+      }
+    },
+    {
+      "place": "Mumbai",
+      "date": "2004-10-14",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1275339&date=14/10/2004",
+      "sunrise": "2004-10-14T01:02Z",
+      "sunset": "2004-10-14T12:46Z",
+      "tithi": [
+        {
+          "name": "Amavasya",
+          "upto": "2004-10-14T02:48Z"
+        },
+        {
+          "name": "Pratipada",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Chitra",
+          "upto": "2004-10-14T19:12Z"
+        },
+        {
+          "name": "Swati",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Vaidhriti",
+          "upto": "2004-10-14T11:57Z"
+        },
+        {
+          "name": "Vishkambha",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Nagava",
+          "upto": "2004-10-14T02:48Z"
+        },
+        {
+          "name": "Kinstughna",
+          "upto": "2004-10-14T13:59Z"
+        },
+        {
+          "name": "Bava",
+          "upto": null
+        }
+      ],
+      "weekday": "Guruwara",
+      "paksha": "Krishna Paksha",
+      "amanta": "Bhadrapada",
+      "purnimanta": "Ashwina",
+      "shakaSamvat": "1926 Tarana",
+      "rahuKalam": {
+        "start": "2004-10-14T08:22Z",
+        "end": "2004-10-14T09:50Z"
+      },
+      "yamaganda": {
+        "start": "2004-10-14T01:02Z",
+        "end": "2004-10-14T02:30Z"
+      },
+      "gulikai": {
+        "start": "2004-10-14T03:58Z",
+        "end": "2004-10-14T05:26Z"
+      },
+      "abhijit": {
+        "start": "2004-10-14T06:31Z",
+        "end": "2004-10-14T07:18Z"
+      }
+    },
+    {
+      "place": "New Delhi",
+      "date": "2007-07-10",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1261481&date=10/07/2007",
+      "sunrise": "2007-07-10T00:00Z",
+      "sunset": "2007-07-10T13:52Z",
+      "tithi": [
+        {
+          "name": "Ekadashi",
+          "upto": "2007-07-10T20:31Z"
+        },
+        {
+          "name": "Dwadashi",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Bharani",
+          "upto": "2007-07-10T04:30Z"
+        },
+        {
+          "name": "Krittika",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Shula",
+          "upto": "2007-07-10T19:45Z"
+        },
+        {
+          "name": "Ganda",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Bava",
+          "upto": "2007-07-10T09:46Z"
+        },
+        {
+          "name": "Balava",
+          "upto": "2007-07-10T20:31Z"
+        },
+        {
+          "name": "Kaulava",
+          "upto": null
+        }
+      ],
+      "weekday": "Mangalawara",
+      "paksha": "Krishna Paksha",
+      "amanta": "Jyeshtha",
+      "purnimanta": "Ashadha",
+      "shakaSamvat": "1929 Sarvajit",
+      "rahuKalam": {
+        "start": "2007-07-10T10:24Z",
+        "end": "2007-07-10T12:08Z"
+      },
+      "yamaganda": {
+        "start": "2007-07-10T03:28Z",
+        "end": "2007-07-10T05:12Z"
+      },
+      "gulikai": {
+        "start": "2007-07-10T06:56Z",
+        "end": "2007-07-10T08:40Z"
+      },
+      "abhijit": {
+        "start": "2007-07-10T06:29Z",
+        "end": "2007-07-10T07:24Z"
+      }
+    },
+    {
+      "place": "Ujjain",
+      "date": "2010-02-28",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1253914&date=28/02/2010",
+      "sunrise": "2010-02-28T01:20Z",
+      "sunset": "2010-02-28T12:59Z",
+      "tithi": [
+        {
+          "name": "Purnima",
+          "upto": "2010-02-28T16:38Z"
+        },
+        {
+          "name": "Pratipada",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Magha",
+          "upto": "2010-02-28T12:27Z"
+        },
+        {
+          "name": "Purva Phalguni",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Sukarma",
+          "upto": "2010-02-28T18:41Z"
+        },
+        {
+          "name": "Dhriti",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Vishti",
+          "upto": "2010-02-28T06:29Z"
+        },
+        {
+          "name": "Bava",
+          "upto": "2010-02-28T16:38Z"
+        },
+        {
+          "name": "Balava",
+          "upto": null
+        }
+      ],
+      "weekday": "Raviwara",
+      "paksha": "Shukla Paksha",
+      "amanta": "Phalguna",
+      "purnimanta": "Phalguna",
+      "shakaSamvat": "1931 Virodhi",
+      "rahuKalam": {
+        "start": "2010-02-28T11:32Z",
+        "end": "2010-02-28T12:59Z"
+      },
+      "yamaganda": {
+        "start": "2010-02-28T07:10Z",
+        "end": "2010-02-28T08:37Z"
+      },
+      "gulikai": {
+        "start": "2010-02-28T10:05Z",
+        "end": "2010-02-28T11:32Z"
+      },
+      "abhijit": {
+        "start": "2010-02-28T06:46Z",
+        "end": "2010-02-28T07:33Z"
+      }
+    },
+    {
+      "place": "Chennai",
+      "date": "2012-05-20",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date=20/05/2012",
+      "sunrise": "2012-05-20T00:12Z",
+      "sunset": "2012-05-20T12:59Z",
+      "tithi": [
+        {
+          "name": "Amavasya",
+          "upto": "2012-05-20T23:47Z"
+        },
+        {
+          "name": "Pratipada",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Bharani",
+          "upto": "2012-05-20T04:11Z"
+        },
+        {
+          "name": "Krittika",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Shobhana",
+          "upto": "2012-05-20T12:37Z"
+        },
+        {
+          "name": "Atiganda",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Chatushpada",
+          "upto": "2012-05-20T10:30Z"
+        },
+        {
+          "name": "Nagava",
+          "upto": "2012-05-20T23:47Z"
+        },
+        {
+          "name": "Kinstughna",
+          "upto": null
+        }
+      ],
+      "weekday": "Raviwara",
+      "paksha": "Krishna Paksha",
+      "amanta": "Vaishakha",
+      "purnimanta": "Jyeshtha",
+      "shakaSamvat": "1934 Nandana",
+      "rahuKalam": {
+        "start": "2012-05-20T11:23Z",
+        "end": "2012-05-20T12:59Z"
+      },
+      "yamaganda": {
+        "start": "2012-05-20T06:36Z",
+        "end": "2012-05-20T08:11Z"
+      },
+      "gulikai": {
+        "start": "2012-05-20T09:47Z",
+        "end": "2012-05-20T11:23Z"
+      },
+      "abhijit": {
+        "start": "2012-05-20T06:10Z",
+        "end": "2012-05-20T07:01Z"
+      }
+    },
+    {
+      "place": "Mumbai",
+      "date": "2015-09-28",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1275339&date=28/09/2015",
+      "sunrise": "2015-09-28T00:58Z",
+      "sunset": "2015-09-28T13:00Z",
+      "tithi": [
+        {
+          "name": "Purnima",
+          "upto": "2015-09-28T02:50Z"
+        },
+        {
+          "name": "Pratipada",
+          "upto": "2015-09-28T23:05Z"
+        },
+        {
+          "name": "Dwitiya",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Uttara Bhadrapada",
+          "upto": "2015-09-28T12:25Z"
+        },
+        {
+          "name": "Revati",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Vriddhi",
+          "upto": "2015-09-28T10:58Z"
+        },
+        {
+          "name": "Dhruva",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Bava",
+          "upto": "2015-09-28T02:50Z"
+        },
+        {
+          "name": "Balava",
+          "upto": "2015-09-28T12:57Z"
+        },
+        {
+          "name": "Kaulava",
+          "upto": "2015-09-28T23:05Z"
+        },
+        {
+          "name": "Taitila",
+          "upto": null
+        }
+      ],
+      "weekday": "Somawara",
+      "paksha": "Shukla Paksha",
+      "amanta": "Bhadrapada",
+      "purnimanta": "Bhadrapada",
+      "shakaSamvat": "1937 Manmatha",
+      "rahuKalam": {
+        "start": "2015-09-28T02:29Z",
+        "end": "2015-09-28T03:59Z"
+      },
+      "yamaganda": {
+        "start": "2015-09-28T05:29Z",
+        "end": "2015-09-28T06:59Z"
+      },
+      "gulikai": {
+        "start": "2015-09-28T08:29Z",
+        "end": "2015-09-28T09:59Z"
+      },
+      "abhijit": {
+        "start": "2015-09-28T06:35Z",
+        "end": "2015-09-28T07:23Z"
+      }
+    },
+    {
+      "place": "New Delhi",
+      "date": "2017-12-25",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1261481&date=25/12/2017",
+      "sunrise": "2017-12-25T01:42Z",
+      "sunset": "2017-12-25T12:01Z",
+      "tithi": [
+        {
+          "name": "Saptami",
+          "upto": "2017-12-25T21:13Z"
+        },
+        {
+          "name": "Ashtami",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Purva Bhadrapada",
+          "upto": "2017-12-25T19:40Z"
+        },
+        {
+          "name": "Uttara Bhadrapada",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Siddhi",
+          "upto": "2017-12-25T01:57Z"
+        },
+        {
+          "name": "Vyatipata",
+          "upto": "2017-12-26T01:17Z"
+        },
+        {
+          "name": "Variyana",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Garaja",
+          "upto": "2017-12-25T08:55Z"
+        },
+        {
+          "name": "Vanija",
+          "upto": "2017-12-25T21:13Z"
+        },
+        {
+          "name": "Vishti",
+          "upto": null
+        }
+      ],
+      "weekday": "Somawara",
+      "paksha": "Shukla Paksha",
+      "amanta": "Pausha",
+      "purnimanta": "Pausha",
+      "shakaSamvat": "1939 Hemalambi",
+      "rahuKalam": {
+        "start": "2017-12-25T02:59Z",
+        "end": "2017-12-25T04:16Z"
+      },
+      "yamaganda": {
+        "start": "2017-12-25T05:34Z",
+        "end": "2017-12-25T06:51Z"
+      },
+      "gulikai": {
+        "start": "2017-12-25T08:09Z",
+        "end": "2017-12-25T09:26Z"
+      },
+      "abhijit": {
+        "start": "2017-12-25T06:31Z",
+        "end": "2017-12-25T07:12Z"
+      }
+    },
+    {
+      "place": "Ujjain",
+      "date": "2020-06-21",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1253914&date=21/06/2020",
+      "sunrise": "2020-06-21T00:12Z",
+      "sunset": "2020-06-21T13:46Z",
+      "tithi": [
+        {
+          "name": "Amavasya",
+          "upto": "2020-06-21T06:40Z"
+        },
+        {
+          "name": "Pratipada",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Mrigashira",
+          "upto": "2020-06-21T07:32Z"
+        },
+        {
+          "name": "Ardra",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Ganda",
+          "upto": "2020-06-21T08:16Z"
+        },
+        {
+          "name": "Vriddhi",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Nagava",
+          "upto": "2020-06-21T06:40Z"
+        },
+        {
+          "name": "Kinstughna",
+          "upto": "2020-06-21T18:38Z"
+        },
+        {
+          "name": "Bava",
+          "upto": null
+        }
+      ],
+      "weekday": "Raviwara",
+      "paksha": "Krishna Paksha",
+      "amanta": "Jyeshtha",
+      "purnimanta": "Ashadha",
+      "shakaSamvat": "1942 Sharvari",
+      "rahuKalam": {
+        "start": "2020-06-21T12:04Z",
+        "end": "2020-06-21T13:46Z"
+      },
+      "yamaganda": {
+        "start": "2020-06-21T06:59Z",
+        "end": "2020-06-21T08:41Z"
+      },
+      "gulikai": {
+        "start": "2020-06-21T10:22Z",
+        "end": "2020-06-21T12:04Z"
+      },
+      "abhijit": {
+        "start": "2020-06-21T06:32Z",
+        "end": "2020-06-21T07:26Z"
+      }
+    },
+    {
+      "place": "Chennai",
+      "date": "2023-01-21",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date=21/01/2023",
+      "sunrise": "2023-01-21T01:06Z",
+      "sunset": "2023-01-21T12:35Z",
+      "tithi": [
+        {
+          "name": "Amavasya",
+          "upto": "2023-01-21T20:52Z"
+        },
+        {
+          "name": "Pratipada",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Purva Ashadha",
+          "upto": "2023-01-21T04:10Z"
+        },
+        {
+          "name": "Uttara Ashadha",
+          "upto": "2023-01-22T01:00Z"
+        },
+        {
+          "name": "Shravana",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Harshana",
+          "upto": "2023-01-21T09:05Z"
+        },
+        {
+          "name": "Vajra",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Chatushpada",
+          "upto": "2023-01-21T10:50Z"
+        },
+        {
+          "name": "Nagava",
+          "upto": "2023-01-21T20:52Z"
+        },
+        {
+          "name": "Kinstughna",
+          "upto": null
+        }
+      ],
+      "weekday": "Shaniwara",
+      "paksha": "Krishna Paksha",
+      "amanta": "Pausha",
+      "purnimanta": "Magha",
+      "shakaSamvat": "1944 Shubhakrit",
+      "rahuKalam": {
+        "start": "2023-01-21T03:58Z",
+        "end": "2023-01-21T05:24Z"
+      },
+      "yamaganda": {
+        "start": "2023-01-21T08:16Z",
+        "end": "2023-01-21T09:42Z"
+      },
+      "gulikai": {
+        "start": "2023-01-21T01:06Z",
+        "end": "2023-01-21T02:32Z"
+      },
+      "abhijit": {
+        "start": "2023-01-21T06:27Z",
+        "end": "2023-01-21T07:13Z"
+      }
+    },
+    {
+      "place": "Mumbai",
+      "date": "2024-08-04",
+      "url": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1275339&date=04/08/2024",
+      "sunrise": "2024-08-04T00:46Z",
+      "sunset": "2024-08-04T13:43Z",
+      "tithi": [
+        {
+          "name": "Amavasya",
+          "upto": "2024-08-04T11:12Z"
+        },
+        {
+          "name": "Pratipada",
+          "upto": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Pushya",
+          "upto": "2024-08-04T07:56Z"
+        },
+        {
+          "name": "Ashlesha",
+          "upto": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Siddhi",
+          "upto": "2024-08-04T05:08Z"
+        },
+        {
+          "name": "Vyatipata",
+          "upto": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Nagava",
+          "upto": "2024-08-04T11:12Z"
+        },
+        {
+          "name": "Kinstughna",
+          "upto": "2024-08-04T23:49Z"
+        },
+        {
+          "name": "Bava",
+          "upto": null
+        }
+      ],
+      "weekday": "Raviwara",
+      "paksha": "Krishna Paksha",
+      "amanta": "Ashadha",
+      "purnimanta": "Shravana",
+      "shakaSamvat": "1946 Krodhi",
+      "rahuKalam": {
+        "start": "2024-08-04T12:05Z",
+        "end": "2024-08-04T13:43Z"
+      },
+      "yamaganda": {
+        "start": "2024-08-04T07:14Z",
+        "end": "2024-08-04T08:51Z"
+      },
+      "gulikai": {
+        "start": "2024-08-04T10:28Z",
+        "end": "2024-08-04T12:05Z"
+      },
+      "abhijit": {
+        "start": "2024-08-04T06:49Z",
+        "end": "2024-08-04T07:40Z"
+      }
+    }
+  ]
+}

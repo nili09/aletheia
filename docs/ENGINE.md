@@ -14,7 +14,7 @@
 | `src/events/` | Event finder: bracket by sampling, refine with Brent's method |
 | `src/worker/` | Worker host (lazy files, serial queue, 64-entry LRU cache) and typed client |
 | `src/verify/horizons.ts` | The JPL comparison, shared by the tests and the Truth screen |
-| `scripts/fetch-*.mjs` | Regenerate the reference fixtures from NASA, JPL and USNO |
+| `scripts/fetch-*.mjs` | Regenerate the reference fixtures (NASA, JPL, USNO, Drik Panchang) and the Sanskrit verses |
 
 ## Rebuilding the WebAssembly
 
@@ -51,3 +51,29 @@ Nothing astronomical loads until Truth is opened. The worker then fetches the We
 ## Conventions not settled by the texts
 
 Jupiter and Saturn are system barycentres (at most 0.075″ from the planet; centre-of-body data covers only 1900–2047 and needs extra files). Positions use precession IAU 2006 and nutation IAU 2000B (the library default). Retrograde means the sidereal longitude speed is negative. These are recorded in docs/CANON.md.
+
+## Jyotish
+
+`src/jyotish/` builds the classical calculations on the verified sky. Each rule is tied to its source in `src/jyotish/sources.ts` (rule id → verses, our translation, a plain-English Yantra explanation, and a status: canon, pending or unsourced) and recorded in docs/CANON.md.
+
+| Path | What |
+|---|---|
+| `sources.ts`, `verses.json` | The Mantra and Yantra doors. `verses.json` is the Sanskrit, verbatim, from `scripts/fetch-verses.mjs` (BPHS, Bṛhajjātaka and Phaladīpikā from sanskritdocuments.org; Sūrya Siddhānta from GRETIL) |
+| `core.ts` | Signs, lords, weekday order, house counting |
+| `dignity.ts` | Exaltation, debilitation, mūlatrikoṇa, own sign; natural friendship computed from BPHS 3.55; temporal and compound |
+| `vargas.ts` | The sixteen vargas of BPHS 6 |
+| `panchang.ts` | Tithi, nakṣatra and pada, yoga, karaṇa (each span with exact start and end), vāra; amānta and pūrṇimānta month with adhika and kṣaya; pakṣa, saṃvatsara, ṛtu, ayana; day and night eighths (Gulika, Yamagaṇḍa), Rāhu kāla, horās, muhūrtas, abhijit |
+| `chart.ts` | A chart as plain data: sidereal, tropical and equatorial positions, lagna and MC, the vāra day, horā lord |
+| `states.ts` | Cruel and gentle grahas, combustion (kālāṃśa or longitude), planetary war |
+| `jaimini.ts` | Chara kārakas, ārūḍha padas, signs with two lords, upapada, kārakāṃśa, argalā |
+| `dasha.ts` | Viṃśottarī and Yoginī to any depth (five levels: mahā to prāṇa), cara daśā |
+| `ashtakavarga.ts` | Bhinna and sarva aṣṭakavarga (BPHS or BJ tables), trikoṇa and ekādhipatya śodhana |
+| `shadbala.ts` | Ṣaḍbala, all six components in virūpas and rūpas, with the precise aspects of BPHS 26 |
+| `kundali.ts` | Everything above for one chart, in one object |
+| `settings.ts` | The jyotish conventions, all switchable |
+
+`Engine.panchang(t, place, settings)` gives the pañcāṅga of the vāra day (sunrise to next sunrise) containing t; `Engine.chart` and `Engine.kundali` give a chart and its full analysis. The worker serves both (`panchang`, `kundali`). A kundali takes about 25 ms, a pañcāṅga about 45 ms, in Node on a desktop.
+
+Every result carries `provisional`: the ids of the rules it used whose reading awaits Nilesh's decision. The UI must show these results as provisional until the rule is settled.
+
+Times in daśās are Julian days TT (a daśā year is `dashaYearDays` days of TT). Pañcāṅga and chart instants are `Instant`s with both TT and UT.
