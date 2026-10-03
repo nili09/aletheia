@@ -20,6 +20,7 @@ import { buildChart, type Chart } from './jyotish/chart.ts';
 import { kundali, type Kundali } from './jyotish/kundali.ts';
 import { panchang, type Panchang } from './jyotish/panchang.ts';
 import { DEFAULT_JYOTISH, type JyotishSettings } from './jyotish/settings.ts';
+import { sensitivity, type Sensitivity } from './jyotish/sensitivity.ts';
 
 export const PLANET_FILES = ['sepl_18.se1', 'semo_18.se1'] as const;
 export const STAR_FILE = 'sefstars.txt';
@@ -171,6 +172,17 @@ export class Engine {
   /** The full analysis of a chart: vargas, states, Jaimini, aṣṭakavarga, ṣaḍbala, daśās. */
   kundali(t: TimeInput, place: Place, s: JyotishSettings = DEFAULT_JYOTISH): Kundali {
     return kundali(this.chart(t, place, s));
+  }
+
+  /** The sidereal ascendant and Moon at an instant: what a birth time decides first. */
+  birthPoint(t: TimeInput, place: Place, s: JyotishSettings = DEFAULT_JYOTISH): { instant: Instant; ascendant: number; moon: number } {
+    const instant = this.prepare(t, s.ayanamsa);
+    return { instant, ascendant: houses(this.swe, instant, place, 'W').ascendant.sidereal, moon: grahaPosition(this.swe, instant, 'moon', s.node).sidereal.longitude };
+  }
+
+  /** How far the birth time can move before the lagna, navāṃśa lagna, D60 lagna or Moon's nakṣatra changes. */
+  sensitivity(t: TimeInput, place: Place, s: JyotishSettings = DEFAULT_JYOTISH): Sensitivity {
+    return sensitivity(this.swe, this.prepare(t, s.ayanamsa), place, s);
   }
 
   // ---------- internals ----------

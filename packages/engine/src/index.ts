@@ -42,5 +42,6 @@ export * from './jyotish/dasha.ts';
 export * from './jyotish/ashtakavarga.ts';
 export * from './jyotish/shadbala.ts';
 export * from './jyotish/kundali.ts';
+export * from './jyotish/sensitivity.ts';
 export * from './jyotish/settings.ts';
 export * from './jyotish/sources.ts';

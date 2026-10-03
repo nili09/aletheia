@@ -161,6 +161,14 @@ export class EngineHost {
         const { time, place, settings } = params as Params<'kundali'>;
         return engine.kundali(time, place, settings) as R;
       }
+      case 'birthPoints': {
+        const { times, place, settings } = params as Params<'birthPoints'>;
+        return times.map((t) => engine.birthPoint(t, place, settings)) as R;
+      }
+      case 'sensitivity': {
+        const { time, place, settings } = params as Params<'sensitivity'>;
+        return engine.sensitivity(time, place, settings) as R;
+      }
     }
     throw new Error(`unknown method ${String(method)}`);
   }

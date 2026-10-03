@@ -42,8 +42,9 @@ export default defineConfig({
         globPatterns: ['**/*.{html,js,css,woff2,svg,png,webmanifest,wasm}'],
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
-        // Ephemeris data (1.9 MB) and the JPL reference fixture are not precached: the engine
-        // fetches them the first time it needs them, and this caches each one then. Their
+        // Ephemeris data (1.9 MB), the JPL reference fixture, the zone table (0.6 MB) and the
+        // place index (15 MB of text, about 7 MB compressed) are not precached: the workers
+        // fetch them the first time they are needed, and this caches each one then. Their
         // names carry a content hash, so a cached copy is never stale.
         runtimeCaching: [
           {
@@ -51,7 +52,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'aletheia-ephemeris',
-              expiration: { maxEntries: 16, purgeOnQuotaError: false },
+              expiration: { maxEntries: 24, purgeOnQuotaError: false },
               cacheableResponse: { statuses: [200] },
             },
           },

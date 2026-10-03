@@ -14,7 +14,7 @@
 | `src/events/` | Event finder: bracket by sampling, refine with Brent's method |
 | `src/worker/` | Worker host (lazy files, serial queue, 64-entry LRU cache) and typed client |
 | `src/verify/horizons.ts` | The JPL comparison, shared by the tests and the Truth screen |
-| `scripts/fetch-*.mjs` | Regenerate the reference fixtures (NASA, JPL, USNO, Drik Panchang) and the Sanskrit verses |
+| `scripts/fetch-*.mjs` | Regenerate the reference fixtures (NASA, JPL, USNO, Drik Panchang pañcāṅga and lagna tables) and the Sanskrit verses |
 
 ## Rebuilding the WebAssembly
 
@@ -70,7 +70,10 @@ Jupiter and Saturn are system barycentres (at most 0.075″ from the planet; cen
 | `ashtakavarga.ts` | Bhinna and sarva aṣṭakavarga (BPHS or BJ tables), trikoṇa and ekādhipatya śodhana |
 | `shadbala.ts` | Ṣaḍbala, all six components in virūpas and rūpas, with the precise aspects of BPHS 26 |
 | `kundali.ts` | Everything above for one chart, in one object |
+| `sensitivity.ts` | How far the birth time can move before the lagna, navāṃśa lagna, D60 lagna or the Moon's nakṣatra changes: exact crossings by the event finder (docs/BIRTH.md) |
 | `settings.ts` | The jyotish conventions, all switchable |
+
+`Engine.birthPoint` gives the sidereal ascendant and Moon at an instant (to compare the readings of a birth time); `Engine.sensitivity` the crossings either side. The worker serves both (`birthPoints`, `sensitivity`).
 
 `Engine.panchang(t, place, settings)` gives the pañcāṅga of the vāra day (sunrise to next sunrise) containing t; `Engine.chart` and `Engine.kundali` give a chart and its full analysis. The worker serves both (`panchang`, `kundali`). A kundali takes about 25 ms, a pañcāṅga about 45 ms, in Node on a desktop.
 

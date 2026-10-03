@@ -7,6 +7,7 @@ Accuracy is priority zero, so tests come before features. A feature is not done 
 | Layer | Tool | Where | Command |
 |---|---|---|---|
 | Engine unit and reference tests | Vitest | `packages/engine/test` | `npm test -w @aletheia/engine` |
+| Birth inputs (places, zones, India's clocks) | Vitest | `packages/birth/test` | `npm test -w @aletheia/birth` |
 | Web unit tests | Vitest | `apps/web/src/**/*.test.ts(x)` | `npm test -w @aletheia/web` |
 | Phone screenshots and Truth screen | Playwright (iPhone 13 on WebKit, Pixel 7 on Chromium) | `apps/web/e2e` | `npm run e2e` |
 
@@ -61,6 +62,8 @@ Fixtures live in `packages/engine/test/fixtures/`, each recording its source, qu
 | `shadbala.test.ts` | BPHS 26.6–12 read off the verses; khaṇḍas vs sine; SS 1.51–52; Swiss Ephemeris heliocentric longitudes 1800–2400 | Aspects; ayana; year and month lords; Meeus mean longitudes within the equation of centre, averaging out; ceṣṭā at opposition/conjunction; natonnata at noon; pakṣa at full moon | Exact; mean longitudes within e.o.c. + margin, mean < 0.5° | Pass |
 | `jaimini.test.ts` | BPHS 29.5 worked example; 31.3–7, 32.3–5 worked by hand; spherical astronomy; the 2020-12-21 Jupiter–Saturn conjunction | Kārakas, padas, argalā; kālāṃśa = ΔRA at the equator; arcs; war detection and victor | Exact (1e-9°) | Pass |
 | `sources.test.ts` | `verses.json` | Every cited verse has Sanskrit and a translation; nothing uncited; open rules say what is open | Exact | Pass |
+| `sensitivity.test.ts` | Drik Panchang Udaya Lagna tables, 10 days 1948–2024, Mumbai, Kolkata, New Delhi, Chennai | Every lagna's start and end (120 crossings), from the sensitivity search at the lagna's midpoint | 90 s (set before measuring: Drik shows minutes) | Pass; residuals +19 to +83 s, all positive (see below) |
+| `sensitivity.test.ts` | Definition; 15-second scan | 40 seeded charts 1800–2400, lat ±60°: each value holds 1 s inside its crossing and differs 1 s beyond; no change missed between | Exact | Pass |
 | `consistency.test.ts` | Invariants | 1000 seeded random charts 1800–2400 (lat ±60°): SAV 337 and per-graha totals in both tables; D9 = pada; daśās tile at five levels; padas; kāraka order; ṣaḍbala ranges and sums; 200 pañcāṅgas tile; reduced precision outside the files | Exact | Pass (≈12 s) |
 
 ### Positions against JPL Horizons: how the frames are matched
@@ -79,6 +82,21 @@ One of 24 instants (Ujjain, 1978) misses 0.05 s by 0.011 s. Measured against IER
 ### Ayanamsa exceptions
 
 For modes 18, 19, 20 and 34 (J2000, J1900, B1950, Skydram) the library defines sidereal positions as a projection onto the ecliptic of the mode's epoch, so sidereal ≠ tropical − ayanamsa by a few arcseconds; the test checks that exactly these four differ. No mode needs `sefstars.txt`: the reference stars are built into the library.
+
+## Birth inputs (`packages/birth/test`, `apps/web/src/birth`)
+
+| Test | Reference | Compared | Tolerance and why | Result |
+|---|---|---|---|---|
+| `zones.test.ts` | Node 22 ICU 78.2 (tzdb 2026a): an independent compilation of the tzdb, by `scripts/icu-reference.mjs` | Every offset change of all 344 zones, 1800–2099 | Exact, to the second | Pass. 13 zones differ, each only from the date a later tzdb release (2026b–e) changed it, listed with its NEWS entry |
+| `zones.test.ts` | IANA source text (`asia`, `europe`) | Asia/Kolkata's zone lines; London's 1941 double summer time; fold and gap | Exact | Pass |
+| `india.test.ts` | *The Indian Year Book* 1947 and 1942–43; tzdb notes; Das (docs/CANON.md) | The clocks offered in every period, their order and instants; the five checkpoint births; boundaries | Exact | Pass |
+| `places.test.ts` | GeoNames records (IN.txt) | Coordinates and admin codes of Mumbai, Kolkata, New Delhi, Ujjain, Chennai; old names; district filter; nearest place; every place's zone exists | Exact | Pass. GeoNames' New Delhi (1261481) is 28.62137, 77.2148, not the 28.63576, 77.22445 in `drik-panchang.json` (Drik's own) |
+| `format.test.ts` (web) | Engine in Node | The five births' comparisons (“39 minutes apart; lagna moves from …”); sensitivity line; export and import | Exact | Pass |
+| `birth.spec.ts` (e2e, both phones) | The same | Entering the five births; the question and its options; saving waits for the clock; sensitivity of a saved chart; trace; export, then import into a fresh browser; coordinates; OpenStreetMap asks first and “No” sends nothing | Exact text | Pass |
+
+### Lagna times against Drik Panchang: a constant offset
+
+All 120 lagna crossings are later than Drik's by 19–83 s (mean about 50 s); none is earlier. The spread is a minute, Drik's rounding. The offset does not grow with ΔT (29 s in 1948, 69 s in 2024: per-day means 44–55 s throughout) and in arc it ranges from 4′ to 28′ of ascendant, wider than in time, so it looks like an offset in time rather than in angle. Our ascendant agrees with the textbook formula to 1e-6″ and our sidereal time with JPL to 0.06 s (`houses.test.ts`); the 15–20″ Lahiri difference found in the yoga test moves a lagna by about a second, and the other way. So the offset is in Drik's lagna table or a convention it uses, not yet identified. The 90 s tolerance, set before measuring, is unchanged; it matters only for the D60 lagna, whose parts last about 2 minutes.
 
 ## Screenshots
 

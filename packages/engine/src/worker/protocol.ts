@@ -16,6 +16,7 @@ import type { Settings, TimeInput } from '../engine.ts';
 import type { Kundali } from '../jyotish/kundali.ts';
 import type { Panchang } from '../jyotish/panchang.ts';
 import type { JyotishSettings } from '../jyotish/settings.ts';
+import type { Sensitivity } from '../jyotish/sensitivity.ts';
 
 /** Everything the Truth screen shows for one instant, in one round trip. */
 export interface Snapshot {
@@ -47,6 +48,8 @@ export interface Methods {
   horizonsCheck: { params: Record<string, never>; result: HorizonsReport };
   panchang: { params: { time: TimeInput; place: Place; settings: JyotishSettings }; result: Panchang };
   kundali: { params: { time: TimeInput; place: Place; settings: JyotishSettings }; result: Kundali };
+  birthPoints: { params: { times: TimeInput[]; place: Place; settings: JyotishSettings }; result: Array<{ instant: Instant; ascendant: number; moon: number }> };
+  sensitivity: { params: { time: TimeInput; place: Place; settings: JyotishSettings }; result: Sensitivity };
 }
 
 export type Method = keyof Methods;

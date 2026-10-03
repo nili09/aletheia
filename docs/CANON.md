@@ -104,3 +104,37 @@ Each is used with its default meanwhile and listed in `provisional` on every res
 14. Cara daśā: which antardaśā order (51.5 or 51.6–11), whether to compute a second cycle, and the reading of 46.165. (K.N. Rao, *Predicting through Jaimini’s Chara Dasha*, reportedly adds no year for exaltation, caps periods at 12 years, and runs sub-periods in the main sequence.)
 15. Drik Panchang’s Lahiri differs from ours by about 15–20″ (yoga ends up to 135 s apart): keep SE_SIDM_LAHIRI (matches IAE 1989 to 0.008″; K.N. Rao and Sanjay Rath both use Lahiri)? Rath’s Spica-at-180° variant (True Citra) fits Drik worse (yoga up to 359 s). The yoga test stays failing until decided.
 16. The BPHS e-text (97-chapter recension): is this the edition to cite? It has typing errors (e.g. 27.13 “वष” for “वर्ष”, 32.4 first line corrupt, 66.52 “शक्र”). K.N. Rao reportedly rates no translation as accurate, G.C. Sharma’s and Sitaram Jha’s as passable, Ganesh Datta Pathak’s Hindi as better.
+
+## Birth time and place (2026-10-03)
+
+Civil time, not jyotish: the sources are historical records, cited by page. Where they disagree, every reading is offered and the person entering the birth chooses; the first offered is the commonest clock of the place and time by these sources, never pre-selected when there is a choice. Code: `packages/birth/src/india.ts`, `civil.ts`, `zones.ts`; details in docs/BIRTH.md.
+
+| Topic | Choice | Source | Alternatives | Date |
+|---|---|---|---|---|
+| Places | GeoNames: every populated place in India (549 021: cities, towns, villages; not abandoned, historical or destroyed), towns of 5 000+ elsewhere; coordinates and elevation exactly as GeoNames gives them | GeoNames dump (geonames.org, CC BY 4.0), retrieved 2026-10-03 | OpenStreetMap Nominatim (online, on request, after consent); coordinates typed by hand | 2026-10-03 |
+| Time zones | IANA tzdb 2026e, compiled by zic (Python `tzdata` 2026.5); offsets to the second 1800–2099, daylight saving and war time included. A reading the clocks showed twice (fall back) or never (spring forward) has two instants: the person chooses | IANA tzdb | — | 2026-10-03 |
+| Zone of typed coordinates | timezone-boundary-builder polygons (`@photostructure/tz-lookup` 11.7.0); state and district from the nearest indexed place | — | — | 2026-10-03 |
+| India | The tzdb's Asia/Kolkata is replaced by India's own clock history (rows below). The tzdb itself says it follows railway time and calls its only source for 1941–45 (Shanks) dubious; it has no Bombay or Calcutta time | tzdb file `asia`, India notes | The tzdb's Asia/Kolkata (shown in every trace for comparison) | 2026-10-03 |
+| Local mean time | Longitude × 4 min of time per degree, not rounded. The only clock before 1870; first choice until 1906 | Definition; tzdb notes (Prasad, *Tracks of Change*, CUP 2016, p. 145: “Calcutta, Bombay, and Karachi … continue with their local time for civil purposes”) | — | 2026-10-03 |
+| Madras time | UTC+5:21:10, railways and telegraphs 1870 to 1 January 1906 | tzdb (from *The Indian Year Book* 1936–37, pp. 27–28; Prasad p. 145) | 5:20:57.3 (US Navy report 1876); 5:21:14 (80°18′30″ E, The Hindu 2014) | 2026-10-03 |
+| Indian Standard Time | UTC+5:30 from 1 January 1906 (railways and telegraphs; general use left to each municipality) | *The Indian Year Book* vol. XXXIII (1947), “Standard Time”, pp. 24–25 | — | 2026-10-03 |
+| Calcutta Time | UTC+5:53:20, offered in West Bengal from 1884; first choice there until 1 October 1941 and from 15 October 1945 until 1 September 1947 | Year Book 1942–43 (vol. XXIX): “Calcutta retains its former Calcutta time”, “twenty-four minutes in advance of Standard Time”; 5:53:20 from Shanks via the tzdb | +5:54 (Year Book 1936–37, via the tzdb) | 2026-10-03 |
+| Bengal war time | UTC+6:30 from 1 October 1941: “The Bengal Government decided from October 1, 1941, to move forward their clocks by 36 minutes; Bengal time therefore became an hour ahead of Indian Standard Time” | Year Book 1947, p. 25 (read from the page scan; the OCR gives “30” and “80”) | IST (railways) | 2026-10-03 |
+| War time | UTC+6:30, all India, 1 September 1942 to 2 a.m. 15 October 1945; IST (5:30) also offered, for times written in standard time | Year Book 1947, p. 25 (it prints “1915” for 1945) | — | 2026-10-03 |
+| India outside Bengal, 1 Oct 1941 – 15 May 1942 | IST first; UTC+6:30 offered as the tzdb's reading | Year Book 1947 names only Bengal; the tzdb (Shanks) has all India at +6:30 | — | 2026-10-03 |
+| End of Calcutta Time | 1 September 1947 (midnight 31 Aug/1 Sep, Calcutta and West Bengal on IST); still offered, second, until the end of 1948 | Debashish Das, “Introduction of the Indian Standard Time: a historical survey”, as reported in ThePrint (“The IST story”) | 1948 (Wikipedia, unsourced) | 2026-10-03 |
+| Bombay Time | UTC+4:51 (39 minutes behind IST), offered in Mumbai from 1884; second choice after IST from 1906 (“retained only in the clocks maintained by the Municipality and in the establishments of some orthodox Hindus. Elsewhere Standard Time is universal”) | Year Book 1947, p. 25 | 4:50:30 (The Times of India 1950: clocks “advanced by 39 and a half minutes”); 4:51:10 (38 min 50 s); Mumbai's own mean time 4:51:31.8 | 2026-10-03 |
+| End of Bombay Time | The municipal clocks moved to IST on the evening of Tuesday 14 March 1950; still offered, second, until the end of 1955 | Das, citing The Times of India (via ThePrint) | 1955 (Wikipedia, unsourced) | 2026-10-03 |
+| Period boundaries | Compared with the written reading; within a day of a boundary the clocks of both sides are offered | — | — | 2026-10-03 |
+| Birth-time sensitivity | How far the time can move before the lagna, the navāṃśa lagna (every 3°20′ of ascendant), the D60 lagna (every 30′) or the Moon's nakṣatra changes; each an exact crossing from the event finder | BPHS 6.12, 6.33; SS 2.64 | — | 2026-10-03 |
+
+## Open decisions for Nilesh: birth inputs
+
+Each is used with the default shown meanwhile.
+
+17. Where are Bombay Time and Calcutta Time offered? Default: Bombay Time in the Mumbai and Mumbai Suburban districts, or within 25 km of Mumbai where GeoNames records no district (it records none for Mumbai itself); Calcutta and Bengal time anywhere in West Bengal. Did Pune or the rest of the Bombay Presidency keep Bombay Time?
+18. Did Bombay's municipal clocks go forward an hour in the war (Bombay Time + 1 h = UTC+5:51)? No source found; not offered.
+19. After 15 October 1945, did Bengal return to Calcutta Time (assumed: Das reports a July 1947 request to end “Bengal time”) or to IST?
+20. Between 15 May and 1 September 1942, Bengal: the Year Book implies Bengal time (+6:30) continued; the tzdb has IST. Both offered, Bengal time first.
+21. Before 1906, local mean time is offered first and Madras railway time second. Right order for home births?
+22. Karachi, Lahore, Dhaka, Rangoon and Colombo before 1947: their own tzdb zones are used; India's clock history is not applied (Prasad: Karachi kept its local time).

@@ -1,0 +1,20 @@
+{
+  "name": "@aletheia/birth",
+  "version": "0.0.0",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./data/*": "./data/*"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json",
+    "build:places": "node scripts/build-places.mjs",
+    "build:zones": "python scripts/build-zones.py && node scripts/icu-reference.mjs"
+  },
+  "dependencies": {
+    "@photostructure/tz-lookup": "11.7.0"
+  }
+}

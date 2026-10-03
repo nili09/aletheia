@@ -17,7 +17,7 @@ const ticks = Array.from({ length: 60 }, (_, i) => {
 });
 
 /** The face itself: a pure function of the instant, so it renders identically in tests. */
-export function NowFace({ now, dialProps }: { now: Date; dialProps?: HTMLAttributes<HTMLDivElement> }) {
+export function NowFace({ now, dialProps, onOpenCharts }: { now: Date; dialProps?: HTMLAttributes<HTMLDivElement>; onOpenCharts?: () => void }) {
   const second = now.getSeconds();
 
   return (
@@ -47,16 +47,22 @@ export function NowFace({ now, dialProps }: { now: Date; dialProps?: HTMLAttribu
       </div>
 
       <h1 className="wordmark">Aletheia</h1>
+      {onOpenCharts && (
+        <button type="button" className="control" onClick={onOpenCharts}>
+          Charts
+        </button>
+      )}
     </main>
   );
 }
 
 /** Now. Pressing and holding the ring opens the hidden Truth screen. */
-export function NowScreen({ onOpenTruth }: { onOpenTruth: () => void }) {
+export function NowScreen({ onOpenTruth, onOpenCharts }: { onOpenTruth: () => void; onOpenCharts: () => void }) {
   const longPress = useLongPress(onOpenTruth);
   return (
     <NowFace
       now={useNow()}
+      onOpenCharts={onOpenCharts}
       dialProps={{
         ...longPress,
         role: 'button',

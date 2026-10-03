@@ -199,9 +199,15 @@ body {
   outline: none;
 }
 
-/* ---------- Truth ---------- */
+.control:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
 
-.truth {
+/* ---------- Truth, Charts, New chart ---------- */
+
+.truth,
+.page {
   min-height: 100vh;
   min-height: 100dvh;
   max-width: 560px;
@@ -260,11 +266,13 @@ body {
   color: var(--accent);
 }
 
-.truth section {
+.truth section,
+.page section {
   margin-top: 26px;
 }
 
-.truth h2 {
+.truth h2,
+.page h2 {
   margin: 0 0 6px;
   font-size: 12.5px;
   font-weight: 500;
@@ -272,7 +280,8 @@ body {
   letter-spacing: -0.005em;
 }
 
-.truth h2 .conv {
+.truth h2 .conv,
+.page h2 .conv {
   font-weight: 400;
   color: rgb(189 173 150 / 0.65);
   margin-left: 6px;
@@ -378,7 +387,233 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .now,
-  .truth {
+  .truth,
+  .page {
     animation: none;
   }
+}
+
+/* ---------- Birth entry and charts ---------- */
+
+.text {
+  appearance: none;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgb(241 240 234 / 0.28);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 16px; /* 16px stops iOS zooming into the field */
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  padding: 8px 10px;
+  min-height: 40px;
+  max-width: 100%;
+  transition: border-color var(--t) var(--ease);
+  user-select: text;
+}
+
+.text:focus {
+  outline: none;
+  border-color: var(--marble);
+}
+
+.text::placeholder {
+  color: rgb(255 255 255 / 0.32);
+}
+
+.text.wide {
+  width: 100%;
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.num,
+.inline {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.num .text {
+  width: auto;
+  min-width: 4.2em;
+}
+
+.inline {
+  margin-top: 10px;
+}
+
+.hint {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.hint.warn {
+  color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 10px 0 0;
+}
+
+.link {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  color: var(--sandstone);
+  font: inherit;
+  font-size: 13.5px;
+  text-decoration: underline;
+  text-decoration-color: rgb(189 173 150 / 0.4);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.link:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.results {
+  margin-top: 8px;
+}
+
+.alias {
+  color: var(--sandstone);
+}
+
+.attribution {
+  padding: 6px 2px;
+  font-size: 11.5px;
+  color: rgb(255 255 255 / 0.45);
+}
+
+.consent {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid rgb(241 240 234 / 0.28);
+  border-radius: var(--radius);
+  font-size: 13.5px;
+}
+
+.consent p {
+  margin: 0 0 10px;
+}
+
+.choice {
+  display: flex;
+  align-items: flex-start;
+}
+
+.choice .row-main {
+  flex: 1;
+}
+
+.why {
+  appearance: none;
+  background: none;
+  border: 0;
+  color: rgb(255 255 255 / 0.5);
+  font: inherit;
+  font-size: 15px;
+  padding: 9px 4px 9px 10px;
+  cursor: pointer;
+}
+
+.row-main[role='radio']::before {
+  content: '';
+  flex: none;
+  width: 12px;
+  height: 12px;
+  margin-top: 3px;
+  border: 1px solid var(--marble);
+  border-radius: 50%;
+  align-self: flex-start;
+}
+
+.row-main[role='radio'][aria-checked='true']::before {
+  background: var(--text);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  appearance: none;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgb(241 240 234 / 0.6);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 13.5px;
+  padding: 7px 12px;
+  opacity: 0.6;
+  transition: opacity var(--t) var(--ease), background-color var(--t) var(--ease);
+  cursor: pointer;
+}
+
+.chip.selected {
+  opacity: 1;
+  background: rgb(223 241 64 / 0.33);
+}
+
+.control.primary {
+  margin-top: 26px;
+  width: 100%;
+  min-height: 44px;
+  opacity: 1;
+}
+
+.control.primary:disabled {
+  opacity: 0.25;
+}
+
+.row-main.stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+}
+
+.stacked .line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stacked .label {
+  font-weight: 500;
+}
+
+.sensitivity {
+  font-size: 12.5px;
+  color: var(--marble);
+  opacity: 0.85;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.sources {
+  margin: 0;
+  padding-left: 1em;
+}
+
+.now .control {
+  margin-top: -12px;
 }

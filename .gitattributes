@@ -4,3 +4,6 @@
 packages/engine/vendor/** binary
 packages/engine/ephe/*.se1 binary
 packages/engine/ephe/*.txt binary
+# Generated data (scripts in packages/birth/scripts): no line diffs.
+packages/birth/data/** -diff
+packages/birth/test/fixtures/** -diff
