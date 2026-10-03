@@ -10,16 +10,17 @@
  * - The vāra day containing the instant: sunrise before it, sunset, next sunrise; the
  *   weekday and the horā lord at the instant.
  */
+import { Sky } from '../events/events.ts';
 import { grahaPosition, GRAHAS, type Graha } from '../grahas.ts';
 import { houses, type Place } from '../houses.ts';
 import { nextRiseSet } from '../riseset.ts';
 import { SEFLG_EQUATORIAL } from '../swe/constants.ts';
 import { ephemerisFlag, type SwissEph } from '../swe/swisseph.ts';
 import { iplOf } from '../grahas.ts';
-import type { Instant } from '../time.ts';
+import { instantFromJdTT, type Instant } from '../time.ts';
 import type { Precision } from '../precision.ts';
 import { SEVEN, signOf, type Planet, type Sign } from './core.ts';
-import { HORA_ORDER, sunriseAtOrBefore, weekdayAt } from './panchang.ts';
+import { HORA_ORDER, lastCrossing, sunriseAtOrBefore, weekdayAt } from './panchang.ts';
 import type { JyotishSettings } from './settings.ts';
 
 export interface ChartGraha {
@@ -59,6 +60,11 @@ export interface Chart {
   vara: number;
   /** Lord of the horā running at the instant. */
   horaLord: Planet;
+  /**
+   * The Sun's latest sidereal saṅkrānti before the instant, and its latest entry into Meṣa,
+   * each with the weekday of its vāra day at the place (for the year and month lords).
+   */
+  sankranti: { latest: { instant: Instant; sign: Sign; vara: number }; mesha: { instant: Instant; vara: number } };
   precision: Precision;
 }
 
@@ -101,6 +107,13 @@ export function buildChart(swe: SwissEph, instant: Instant, place: Place, s: Jyo
   else if (t < sunset.jdUT) part = Math.floor(((t - sunrise.jdUT) / (sunset.jdUT - sunrise.jdUT)) * 12);
   else part = 12 + Math.floor(((t - sunset.jdUT) / (nextSunrise.jdUT - sunset.jdUT)) * 12);
   const horaLord = HORA_ORDER[(HORA_ORDER.indexOf(SEVEN[vara]!) + Math.min(part, 23)) % 7]!;
+
+  const sky = new Sky(swe, s.node);
+  const sun = (t: number) => sky.lon('sun', t);
+  const varaOf = (i: Instant) => weekdayAt(sunriseAtOrBefore(swe, i.jdUT, place, conv).jdUT, place.longitude);
+  const sunSign = grahas.sun.sign;
+  const latest = instantFromJdTT(swe, lastCrossing(sun, sunSign * 30, instant.jdTT, 33, 1));
+  const mesha = instantFromJdTT(swe, lastCrossing(sun, 0, instant.jdTT, 367, 2));
   return {
     instant,
     place,
@@ -116,6 +129,7 @@ export function buildChart(swe: SwissEph, instant: Instant, place: Place, s: Jyo
     day: t < sunset.jdUT,
     vara,
     horaLord,
+    sankranti: { latest: { instant: latest, sign: sunSign, vara: varaOf(latest) }, mesha: { instant: mesha, vara: varaOf(mesha) } },
     precision: instant.precision === 'reduced' || sunrise.precision === 'reduced' ? 'reduced' : 'full',
   };
 }

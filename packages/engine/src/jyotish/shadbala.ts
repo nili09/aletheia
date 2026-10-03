@@ -5,7 +5,9 @@
  * Sthāna: uccha (27.1–2), saptavargaja (27.2–4), ojayugma, kendrādi (27.5), drekkāṇa (27.6).
  * Dik (27.7–8). Kāla: natonnata (27.8–9), pakṣa (27.10–11), tribhāga (27.12), abda, māsa,
  * vāra, horā (27.13), ayana (27.15–17), yuddha (27.20). Ceṣṭā (27.18, 27.24–25).
- * Naisargika (27.14). Dṛk (27.19). Required minimums (27.32–33).
+ * Naisargika (27.14). Dṛk (27.19). Required minimums (27.32–33). Lords of the year and month
+ * (decided 2026-10-03, after the Rath-school Shri Jyoti Star): the weekday lords of the Sun's
+ * entry into Meṣa and of its latest saṅkrānti; alternative, the Sūrya Siddhānta day-count.
  *
  * Readings that await Nilesh's decision are listed in `provisional` and docs/CANON.md.
  */
@@ -15,7 +17,7 @@ import type { Chart } from './chart.ts';
 import { planetSigns } from './chart.ts';
 import { compoundRelation, dignity, naturalRelation, OWN_SIGNS, temporalRelation, type Compound } from './dignity.ts';
 import type { RuleId } from './sources.ts';
-import { crueltyOf, elongation, wars } from './states.ts';
+import { crueltyOf, elongation, mercuryTie, wars } from './states.ts';
 import { vargaSign, type Varga } from './vargas.ts';
 
 /** BPHS 26.6–12: aspect of `aspecting` on a point `a` degrees ahead of it, virūpas 0–60. */
@@ -146,8 +148,11 @@ export function shadbala(c: Chart): Shadbala {
     : Math.min(2, Math.floor(((t - c.sunset.jdUT) / (c.nextSunrise.jdUT - c.sunset.jdUT)) * 3));
   const tribhagaLord: Planet = c.day ? (['mercury', 'sun', 'saturn'] as const)[third]! : (['moon', 'venus', 'mars'] as const)[third]!;
 
-  const jdn = Math.floor(c.sunrise.jdUT + 0.5 + c.place.longitude / 360);
-  const { year, month } = ssYearMonthLords(jdn);
+  // Year and month lords: weekday lords of the Meṣa and the latest saṅkrānti (default), or the SS day-count.
+  const { year, month } =
+    c.settings.yearMonthLords === 'sankranti'
+      ? { year: SEVEN[c.sankranti.mesha.vara]!, month: SEVEN[c.sankranti.latest.vara]! }
+      : ssYearMonthLords(Math.floor(c.sunrise.jdUT + 0.5 + c.place.longitude / 360));
   const day = SEVEN[c.vara]!;
   const hora = c.horaLord;
 
@@ -258,7 +263,8 @@ export function shadbala(c: Chart): Shadbala {
     rows[g].ratio = rows[g].total / rows[g].required;
   }
 
-  const provisional: RuleId[] = ['shadbala-saptavarga-mt', 'dig-bala-points', 'natonnata-bala', 'abda-masa-bala', 'ayana-bala', 'cheshta-bala', 'drik-bala', 'benefic-malefic', 'hora-length'];
+  const provisional: RuleId[] = ['shadbala-saptavarga-mt', 'dig-bala-points', 'natonnata-bala', 'ayana-bala', 'cheshta-bala', 'drik-bala', 'hora-length'];
+  if (mercuryTie(c)) provisional.push('mercury-tie');
   if (ws.length) provisional.push('yuddha-bala', 'graha-yuddha');
   return { rows, lords: { year, month, day, hora }, provisional };
 }

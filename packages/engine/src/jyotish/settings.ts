@@ -1,7 +1,9 @@
 /**
  * Conventions of the jyotish layer. Every one is switchable; the defaults are recorded in
- * docs/CANON.md. Where the texts leave a choice open, the default is marked there as
- * awaiting Nilesh's decision, and results computed with it list the rule in `provisional`.
+ * docs/CANON.md. Where the texts leave a choice open and Nilesh has not decided, the default
+ * is marked there as awaiting his decision, and results computed with it list the rule in
+ * `provisional`. Defaults he has decided (2026-10-03, following K.N. Rao and Sanjay Rath's
+ * school) are canon; the other reading stays available as the alternative value.
  */
 import { DEFAULT_AYANAMSA } from '../ayanamsa.ts';
 import type { NodeKind } from '../grahas.ts';
@@ -25,6 +27,14 @@ export interface JyotishSettings {
   ashtakavarga: 'bphs' | 'bj';
   /** Combustion arcs as kālāṃśa (Sūrya Siddhānta 9.5) or as ecliptic longitude. */
   combustion: 'kalamsha' | 'longitude';
+  /** When the Moon is cruel (BPHS 3.11 kṣīṇa): the whole dark half, or while less than half lit. */
+  waningMoon: 'krishna-paksha' | 'under-half-lit';
+  /** When Mercury is cruel: joined by more cruel than gentle grahas, or by any cruel graha. */
+  mercuryCruel: 'majority' | 'any';
+  /** The seven-kāraka scheme: drop the pitṛkāraka, or merge mātṛ with putra (BPHS 32.16). */
+  sevenKarakas: 'drop-pitri' | 'matri-putra';
+  /** Ṣaḍbala lords of the year and month: weekday of the Meṣa and the latest saṅkrānti, or the Sūrya Siddhānta day-count. */
+  yearMonthLords: 'sankranti' | 'surya-siddhanta';
 }
 
 /** Standard dasha year lengths in days. */
@@ -37,8 +47,12 @@ export const DEFAULT_JYOTISH: Readonly<JyotishSettings> = {
   dashaYearDays: DASHA_YEARS.julian,
   karakas: 8,
   hora: 'equal',
-  karanaOrder: 'surya-siddhanta',
+  karanaOrder: 'pancanga',
   vargas: DEFAULT_VARGA_OPTIONS,
   ashtakavarga: 'bphs',
-  combustion: 'kalamsha',
+  combustion: 'longitude',
+  waningMoon: 'krishna-paksha',
+  mercuryCruel: 'majority',
+  sevenKarakas: 'drop-pitri',
+  yearMonthLords: 'sankranti',
 };

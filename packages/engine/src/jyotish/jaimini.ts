@@ -2,7 +2,7 @@
  * Jaimini topics as BPHS gives them.
  *
  * - Chara kārakas (BPHS 32.1–17): rank by degrees within the sign; Rahu's degrees are
- *   30 − degrees (32.5). Eight with Rahu (default) or seven (32.16: mātṛ = putra).
+ *   30 − degrees (32.5). Eight with Rahu (default) or seven (without the pitṛkāraka).
  * - Ārūḍha padas (BPHS 29.2–5): as far beyond the lord as the lord is from the house; if
  *   that is the house itself, the 10th from it; if its 7th, the 4th from it.
  * - Signs with two lords (Vṛścika: Mars, Ketu; Kumbha: Saturn, Rahu, BPHS 46.157): the
@@ -21,9 +21,15 @@ import type { RuleId } from './sources.ts';
 // ---------- kārakas ----------
 
 export const KARAKAS_8 = ['atma', 'amatya', 'bhratri', 'matri', 'pitri', 'putra', 'jnati', 'dara'] as const;
-/** BPHS 32.16: "others say the mātṛkāraka is the putrakāraka too". */
-export const KARAKAS_7 = ['atma', 'amatya', 'bhratri', 'matri-putra', 'pitri', 'jnati', 'dara'] as const;
-export type KarakaRole = (typeof KARAKAS_8)[number] | (typeof KARAKAS_7)[number];
+/**
+ * Seven kārakas. Default (decided 2026-10-03, K.N. Rao's scheme): the pitṛkāraka is dropped.
+ * Alternative, BPHS 32.16: "others say the mātṛkāraka is the putrakāraka too".
+ */
+export const KARAKAS_7 = {
+  'drop-pitri': ['atma', 'amatya', 'bhratri', 'matri', 'putra', 'jnati', 'dara'],
+  'matri-putra': ['atma', 'amatya', 'bhratri', 'matri-putra', 'pitri', 'jnati', 'dara'],
+} as const;
+export type KarakaRole = (typeof KARAKAS_8)[number] | (typeof KARAKAS_7)[keyof typeof KARAKAS_7][number];
 
 export interface Karaka {
   role: KarakaRole;
@@ -39,11 +45,11 @@ export interface Karakas {
   provisional: RuleId[];
 }
 
-export function charaKarakas(lon: Readonly<Record<Graha, number>>, count: 7 | 8): Karakas {
+export function charaKarakas(lon: Readonly<Record<Graha, number>>, count: 7 | 8, seven: keyof typeof KARAKAS_7 = 'drop-pitri'): Karakas {
   const members: Graha[] = count === 8 ? [...SEVEN, 'rahu'] : [...SEVEN];
   const deg = (g: Graha) => (g === 'rahu' ? 30 - degreesInSign(lon.rahu) : degreesInSign(lon[g]));
   const ranked = members.map((g) => ({ graha: g, degrees: deg(g) })).sort((a, b) => b.degrees - a.degrees);
-  const roles = count === 8 ? KARAKAS_8 : KARAKAS_7;
+  const roles = count === 8 ? KARAKAS_8 : KARAKAS_7[seven];
   const ties: Array<[Graha, Graha]> = [];
   for (let i = 1; i < ranked.length; i++) {
     if (Math.floor(ranked[i - 1]!.degrees * 3600) === Math.floor(ranked[i]!.degrees * 3600)) ties.push([ranked[i - 1]!.graha, ranked[i]!.graha]);
@@ -51,7 +57,7 @@ export function charaKarakas(lon: Readonly<Record<Graha, number>>, count: 7 | 8)
   return {
     karakas: ranked.map((r, i) => ({ role: roles[i]!, ...r })),
     ties,
-    provisional: count === 7 ? ['karaka-seven'] : [],
+    provisional: [],
   };
 }
 
@@ -175,7 +181,7 @@ export function argala(ref: Sign, lon: Readonly<Record<Graha, number>>, cruel: R
     const result: ArgalaPair['result'] = !a.length ? 'none' : !v.length ? 'unobstructed' : a.length > v.length ? 'prevails' : a.length < v.length ? 'obstructed' : 'equal';
     return { place, obstructor, argala: a, virodha: v, result };
   });
-  return { sign: ref, pairs, thirdHouseCruel: at(3).filter((g) => cruel[g]), provisional: ['argala', 'benefic-malefic'] };
+  return { sign: ref, pairs, thirdHouseCruel: at(3).filter((g) => cruel[g]), provisional: ['argala'] };
 }
 
 // ---------- the rest ----------
@@ -190,8 +196,8 @@ export interface Jaimini {
   provisional: RuleId[];
 }
 
-export function jaimini(lagna: Sign, lon: Readonly<Record<Graha, number>>, count: 7 | 8): Jaimini {
-  const karakas = charaKarakas(lon, count);
+export function jaimini(lagna: Sign, lon: Readonly<Record<Graha, number>>, count: 7 | 8, seven: keyof typeof KARAKAS_7 = 'drop-pitri'): Jaimini {
+  const karakas = charaKarakas(lon, count, seven);
   const as = arudhas(lagna, lon);
   const ak = karakas.karakas[0]!.graha;
   const usesTwoLords = as.some((a) => a.lord.by !== 'single');

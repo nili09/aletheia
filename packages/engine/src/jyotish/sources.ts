@@ -6,9 +6,10 @@
  *   scripts/fetch-verses.mjs. Keys are "BPHS 6.12": work, chapter, verse.
  * - TRANSLATIONS are Aletheia's own, made from that Sanskrit. Words in brackets are
  *   supplied for sense.
- * - status: 'canon' (the text is clear), 'pending' (the texts leave a choice open or
- *   conflict; the default awaits Nilesh's decision, docs/CANON.md), 'unsourced' (a
- *   convention with no verse found in the texts consulted).
+ * - status: 'canon' (the text is clear, or Nilesh has decided where texts conflict — see
+ *   `decided`), 'pending' (the texts leave a choice open or conflict; the default awaits
+ *   Nilesh's decision, docs/CANON.md), 'unsourced' (a convention with no verse found in the
+ *   texts consulted).
  */
 import verses from './verses.json' with { type: 'json' };
 
@@ -32,6 +33,8 @@ export interface Rule {
   status: Status;
   /** For 'pending' and 'unsourced': what is open, and the default chosen meanwhile. */
   open?: string;
+  /** For rules where the texts disagree and Nilesh decided: the decision, its date and the authority followed. */
+  decided?: string;
 }
 
 export const TRANSLATIONS: Readonly<Record<string, string>> = {
@@ -304,9 +307,9 @@ export const RULES = {
   'karana-fixed-order': {
     title: 'Order of the fixed karaṇas',
     verses: ['SS 2.67'],
-    yantra: 'Which name falls on which of the four fixed half-tithis around the new moon.',
-    status: 'pending',
-    open: 'SS 2.67 lists Śakuni, Nāga, “Catuṣpada the third”, Kiṃstughna; modern pañcāṅgas give Śakuni, Catuṣpada, Nāga, Kiṃstughna. Default: the Sūrya Siddhānta order. Switch: karanaOrder.',
+    yantra: 'Which name falls on which of the four fixed half-tithis around the new moon: Śakuni on the second half of Kṛṣṇa Caturdaśī, Catuṣpada and Nāga on the two halves of Amāvāsyā, Kiṃstughna on the first half of Śukla Pratipadā.',
+    status: 'canon',
+    decided: 'Nilesh, 2026-10-03: the pañcāṅga order Śakuni, Catuṣpada, Nāga, Kiṃstughna, as P.V.R. Narasimha Rao (Sanjay Rath’s school) and Drik Panchang give it. SS 2.67 lists Nāga before “Catuṣpada the third”; that order remains as karanaOrder: surya-siddhanta.',
   },
   vara: {
     title: 'Vāra',
@@ -420,16 +423,23 @@ export const RULES = {
   'benefic-malefic': {
     title: 'Cruel and gentle grahas',
     verses: ['BPHS 3.10', 'BPHS 3.11'],
-    yantra: 'Classification used by the aspect strength and argalā.',
-    status: 'pending',
-    open: 'BPHS 3.11 calls the waning (kṣīṇa) Moon cruel and Mercury cruel when joined with a cruel graha, but no text consulted says where waning begins or what “joined” means. Default: the Moon is cruel while less than half lit — from Kṛṣṇa Aṣṭamī to Śukla Aṣṭamī, elongation under 90° or over 270°; alternatives: the whole dark half, or within 72° of the Sun. Mercury is cruel when in the same sign as the Sun, Mars, Saturn, Rahu or Ketu.',
+    yantra: 'Classification used by the aspect strength and argalā. The Moon is cruel through the dark half: Moon − Sun from 180° to 360°. Mercury is cruel when the grahas sharing its sign include more cruel than gentle ones.',
+    status: 'canon',
+    decided: 'Nilesh, 2026-10-03: following P.V.R. Narasimha Rao (Sanjay Rath’s school), the waxing Moon of Śukla pakṣa is gentle, the waning Moon of Kṛṣṇa pakṣa cruel; Mercury is cruel “when joined by more natural malefics”. BPHS 3.11 gives no threshold. Alternatives kept: waningMoon: under-half-lit (elongation < 90° or > 270°), mercuryCruel: any.',
   },
   combustion: {
     title: 'Combustion (astaṅgata)',
     verses: ['SS 9.2', 'SS 9.3', 'SS 9.4', 'SS 9.5', 'SS 9.6', 'SS 9.7', 'SS 9.8', 'SS 9.9', 'SS 10.1'],
-    yantra: 'A graha is lost in the Sun’s rays when it rises or sets too close to the Sun to be seen. The arcs (Moon 12°, Mars 17°, Mercury 14° direct / 12° retrograde, Jupiter 11°, Venus 10° direct / 8° retrograde, Saturn 15°) are kālāṃśas: degrees of sidereal time between the graha’s and the Sun’s rising (for a graha behind the Sun, seen in the east before dawn) or setting (for one ahead, seen in the west after dusk), at the observer’s latitude. Computed exactly from the apparent right ascension and declination: oblique ascension α − arcsin(tan φ tan δ).',
+    yantra: 'A graha is lost in the Sun’s rays when it is too close to the Sun to be seen. The arcs: Moon 12°, Mars 17°, Mercury 14° direct / 12° retrograde, Jupiter 11°, Venus 10° direct / 8° retrograde, Saturn 15°, measured as the difference in ecliptic longitude. The Sūrya Siddhānta itself counts kālāṃśas — degrees of sidereal time between the risings or settings at the observer’s latitude, from right ascension and declination: oblique ascension α − arcsin(tan φ tan δ) — kept as the alternative.',
+    status: 'canon',
+    decided: 'Nilesh, 2026-10-03: the Sūrya Siddhānta arcs are accepted (BPHS, BJ and Phaladīpikā give none), measured in ecliptic longitude, as Visti Larsen (Sanjay Rath’s school) applies them. The literal kālāṃśa measure remains as combustion: kalamsha.',
+  },
+  'mercury-tie': {
+    title: 'Mercury between equal company',
+    verses: ['BPHS 3.11'],
+    yantra: 'Mercury sharing its sign with as many cruel as gentle grahas.',
     status: 'pending',
-    open: 'BPHS, BJ and Phaladīpikā give no arcs; they come from the Sūrya Siddhānta, outside the authority list. And modern practice compares ecliptic longitudes instead of kālāṃśas (equal at the equator, different elsewhere). Default: SS kālāṃśas. Switch: combustion.',
+    open: 'The majority rule (P.V.R. Narasimha Rao: cruel “when joined by more natural malefics”) does not cover a tie. Default: gentle, since the cruel condition is not met. Listed in `provisional` only for charts where the tie occurs.',
   },
   'graha-yuddha': {
     title: 'Graha yuddha (planetary war)',
@@ -476,9 +486,9 @@ export const RULES = {
   'abda-masa-bala': {
     title: 'Lords of the year and month',
     verses: ['BPHS 27.13', 'SS 1.51', 'SS 1.52'],
-    yantra: 'Count civil days from the Sūrya Siddhānta’s epoch of creation: 714 402 296 627 days before the Kali epoch (1955 880 000 years × 1 577 917 828 days per 4 320 000 years), which makes the Kali epoch a Friday, as tradition holds. The year lord rules the first day of the current 360-day year in that count, the month lord the first day of its 30-day month.',
-    status: 'pending',
-    open: 'BPHS does not say how to find these lords; the SS rule is used. Alternative: day counts from the Kali epoch.',
+    yantra: 'The year lord is the lord of the weekday on which the Sun last entered sidereal Meṣa; the month lord, of the weekday on which it last changed sign (its latest saṅkrānti). The weekday is that of the vāra (sunrise to sunrise) at the birthplace in which the saṅkrānti falls, the saṅkrānti found to the second from the ephemeris. The alternative counts civil days from the Sūrya Siddhānta’s creation epoch (714 402 296 627 days before the Kali epoch, a Friday) and takes the lords of the first days of the current 360- and 30-day periods.',
+    status: 'canon',
+    decided: 'Nilesh, 2026-10-03: the saṅkrānti method, as in Shri Jyoti Star’s Jaimini edition built on Sanjay Rath’s teaching (“Samkranti lords (Mesha and the last one)”); BPHS 27.13 does not say how to find these lords. The Sūrya Siddhānta day-count (SS 1.51–52) remains as yearMonthLords: surya-siddhanta.',
   },
   'ayana-bala': {
     title: 'Ayana (declination) strength',
@@ -541,9 +551,9 @@ export const RULES = {
   'karaka-seven': {
     title: 'The seven-kāraka scheme',
     verses: ['BPHS 32.16'],
-    yantra: 'With seven kārakas there is one role fewer than with eight.',
-    status: 'pending',
-    open: 'BPHS 32.16: “others say the mātṛkāraka is the putrakāraka too” — so the seven are ātma, amātya, bhrātṛ, mātṛ (= putra), pitṛ, jñāti, dāra (default). Many modern books drop the pitṛkāraka instead.',
+    yantra: 'With seven kārakas there is one role fewer than with eight: ātma, amātya, bhrātṛ, mātṛ, putra, jñāti, dāra; the father is then seen from the Sun.',
+    status: 'canon',
+    decided: 'Nilesh, 2026-10-03: drop the pitṛkāraka, as K.N. Rao’s school uses seven (eight remains the default count, CLAUDE.md). BPHS 32.16’s reading, mātṛ = putra with the pitṛkāraka kept, remains as sevenKarakas: matri-putra.',
   },
   arudha: {
     title: 'Ārūḍha padas',

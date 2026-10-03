@@ -11,7 +11,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import type { Engine } from '../src/index.ts';
 import type { Graha } from '../src/grahas.ts';
 import { argala, argalaHouse, arudha, arudhas, charaKarakas, jaimini } from '../src/jyotish/jaimini.ts';
-import { combustion, crueltyOf, wars } from '../src/jyotish/states.ts';
+import { combustion, crueltyOf, mercuryCompany, mercuryTie, moonIsCruel, wars } from '../src/jyotish/states.ts';
 import { DEFAULT_JYOTISH } from '../src/jyotish/settings.ts';
 import { loadEngine } from './helpers.ts';
 
@@ -34,10 +34,13 @@ describe('chara kārakas (BPHS 32.1–5, 32.13–17)', () => {
     const k8 = charaKarakas(lon, 8).karakas;
     expect(k8.map((k) => `${k.role}:${k.graha}`)).toEqual(['atma:sun', 'amatya:rahu', 'bhratri:saturn', 'matri:mercury', 'pitri:mars', 'putra:venus', 'jnati:jupiter', 'dara:moon']);
     expect(k8[1]!.degrees).toBe(28);
+    // Seven, without the pitṛkāraka (decided 2026-10-03, K.N. Rao's scheme).
     const k7 = charaKarakas(lon, 7);
-    expect(k7.karakas.map((k) => k.role)).toEqual(['atma', 'amatya', 'bhratri', 'matri-putra', 'pitri', 'jnati', 'dara']);
+    expect(k7.karakas.map((k) => k.role)).toEqual(['atma', 'amatya', 'bhratri', 'matri', 'putra', 'jnati', 'dara']);
     expect(k7.karakas.map((k) => k.graha)).toEqual(['sun', 'saturn', 'mercury', 'mars', 'venus', 'jupiter', 'moon']);
-    expect(k7.provisional).toContain('karaka-seven');
+    expect(k7.provisional).toEqual([]);
+    // BPHS 32.16's alternative: mātṛ = putra, pitṛ kept.
+    expect(charaKarakas(lon, 7, 'matri-putra').karakas.map((k) => k.role)).toEqual(['atma', 'amatya', 'bhratri', 'matri-putra', 'pitri', 'jnati', 'dara']);
   });
 
   it('reports pairs equal to the arcsecond (32.16–17)', () => {
@@ -111,17 +114,62 @@ describe('argalā (BPHS 31.3–8)', () => {
   });
 });
 
-describe('cruel and gentle (BPHS 3.11)', () => {
-  it('Moon cruel while less than half lit; Mercury cruel beside a cruel graha', () => {
-    const c = engine.chart({ unixMs: Date.parse('2024-04-08T18:21:00Z') }, { latitude: 0, longitude: 0 }); // new moon
-    expect(crueltyOf(c).moon).toBe(true);
-    const f = engine.chart({ unixMs: Date.parse('2024-04-23T23:49:00Z') }, { latitude: 0, longitude: 0 }); // full moon
-    expect(crueltyOf(f).moon).toBe(false);
-    expect(crueltyOf(f).mercury).toBe(['sun', 'mars', 'saturn', 'rahu', 'ketu'].some((g) => f.grahas[g as Graha].sign === f.grahas.mercury.sign));
+describe('cruel and gentle (BPHS 3.11; decided 2026-10-03)', () => {
+  const equator = { latitude: 0, longitude: 0 };
+  it('the Moon is cruel through the dark half, gentle through the bright half', () => {
+    // Full moon 2024-04-23 23:49 UT; new moon 2024-05-08 03:22 UT.
+    const before = engine.chart({ unixMs: Date.parse('2024-04-23T20:00:00Z') }, equator); // last hours of the bright half
+    const after = engine.chart({ unixMs: Date.parse('2024-04-24T04:00:00Z') }, equator); // first hours of the dark half
+    const lateDark = engine.chart({ unixMs: Date.parse('2024-05-06T00:00:00Z') }, equator);
+    expect(moonIsCruel(before)).toBe(false);
+    expect(moonIsCruel(after)).toBe(true);
+    expect(moonIsCruel(lateDark)).toBe(true);
+    // The alternative: cruel only while less than half lit (Kṛṣṇa Aṣṭamī to Śukla Aṣṭamī).
+    const alt = { ...after, settings: { ...after.settings, waningMoon: 'under-half-lit' as const } };
+    expect(moonIsCruel(alt)).toBe(false);
+  });
+
+  /** A real chart with Mercury's sign companions replaced (signs only matter here). */
+  const withCompany = (cruelN: number, gentleN: number) => {
+    const c = engine.chart({ unixMs: Date.parse('2024-04-23T20:00:00Z') }, equator); // bright half: the Moon is gentle
+    const ms = c.grahas.mercury.sign;
+    const away = (ms + 6) % 12;
+    const grahas = structuredClone(c.grahas);
+    for (const g of ['sun', 'moon', 'mars', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'] as Graha[]) grahas[g].sign = away;
+    (['sun', 'mars', 'saturn'] as Graha[]).slice(0, cruelN).forEach((g) => (grahas[g].sign = ms));
+    (['jupiter', 'venus', 'moon'] as Graha[]).slice(0, gentleN).forEach((g) => (grahas[g].sign = ms));
+    return { ...c, grahas };
+  };
+
+  it('Mercury is cruel when joined by more cruel than gentle grahas', () => {
+    expect(crueltyOf(withCompany(0, 0)).mercury).toBe(false); // alone
+    expect(crueltyOf(withCompany(1, 0)).mercury).toBe(true);
+    expect(crueltyOf(withCompany(2, 1)).mercury).toBe(true);
+    expect(crueltyOf(withCompany(1, 2)).mercury).toBe(false);
+    expect(mercuryCompany(withCompany(2, 1))).toEqual({ cruel: ['sun', 'mars'], gentle: ['jupiter'] });
+  });
+
+  it('a tie is gentle by default and flagged; the alternative makes any cruel company cruel', () => {
+    const tie = withCompany(1, 1);
+    expect(crueltyOf(tie).mercury).toBe(false);
+    expect(mercuryTie(tie)).toBe(true);
+    expect(mercuryTie(withCompany(2, 1))).toBe(false);
+    expect(mercuryTie(withCompany(0, 0))).toBe(false);
+    const any = { ...tie, settings: { ...tie.settings, mercuryCruel: 'any' as const } };
+    expect(crueltyOf(any).mercury).toBe(true);
+    expect(mercuryTie(any)).toBe(false);
   });
 });
 
 describe('combustion (SS 9.2–9, 10.1)', () => {
+  it('measures by ecliptic longitude by default (decided 2026-10-03)', () => {
+    const c = engine.chart({ unixMs: Date.parse('1990-05-17T04:30:00Z') }, { latitude: 28.6139, longitude: 77.209 });
+    const m = combustion(c).find((x) => x.graha === 'mercury')!;
+    expect(m.separation).toBeCloseTo(Math.abs(c.grahas.sun.longitude - c.grahas.mercury.longitude), 9); // 18.1°
+    expect(m.combust).toBe(false);
+    expect(combustion(c, 'kalamsha').find((x) => x.graha === 'mercury')!.combust).toBe(true); // 12.6° of kālāṃśa
+  });
+
   it('at the equator the kālāṃśa is the difference in right ascension', () => {
     const c = engine.chart({ unixMs: Date.parse('2024-03-01T12:00:00Z') }, { latitude: 0, longitude: 0 });
     for (const x of combustion(c, 'kalamsha')) {
@@ -162,7 +210,7 @@ describe('combustion (SS 9.2–9, 10.1)', () => {
     let undefinedSeen = 0;
     for (let d = 0; d < 28; d++) {
       const c = engine.chart({ unixMs: Date.parse('2025-01-01T12:00:00Z') + d * 86400e3 }, { latitude: 65, longitude: 25 }, DEFAULT_JYOTISH);
-      for (const x of combustion(c)) {
+      for (const x of combustion(c, 'kalamsha')) {
         if (x.separation === null) {
           undefinedSeen++;
           expect(x.combust).toBeNull();

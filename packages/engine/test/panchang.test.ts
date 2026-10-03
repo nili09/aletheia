@@ -233,6 +233,10 @@ describe('calendar rules', () => {
     expect(Array.from({ length: 3 }, (_, i) => karanaName(57 + i, 'pancanga'))).toEqual(['Śakuni', 'Catuṣpada', 'Nāga']);
   });
 
+  it('the default fixed-karaṇa order is the pañcāṅgas’ (decided 2026-10-03)', () => {
+    expect(DEFAULT_JYOTISH.karanaOrder).toBe('pancanga');
+  });
+
   it('names amānta months by the saṅkrānti within them; none → adhika, two → kṣaya', () => {
     expect(lunarMonth(11, 0)).toEqual({ index: 0, name: 'Caitra', adhika: false, kshaya: false });
     expect(lunarMonth(11, 11)).toEqual({ index: 0, name: 'Caitra', adhika: true, kshaya: false });

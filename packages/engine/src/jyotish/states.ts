@@ -2,15 +2,16 @@
  * States of the grahas that depend on the chart: cruel or gentle, combustion, planetary war.
  *
  * Cruel and gentle (BPHS 3.11): the Sun, Saturn, Mars, the waning Moon, Rahu and Ketu are
- * cruel; Mercury is cruel when joined with a cruel graha. Where "waning" begins and what
- * "joined" means are open (docs/CANON.md); the defaults are below.
+ * cruel; Mercury is cruel when joined with cruel grahas. Where "waning" begins and what
+ * "joined" means are settled below (docs/CANON.md).
  *
- * Combustion (Sūrya Siddhānta 9.2–9, 10.1): a graha is combust when it rises or sets within
- * its arc of the Sun. The arcs are kālāṃśas — degrees of sidereal time between the risings
- * (graha behind the Sun, seen in the east) or the settings (graha ahead, seen in the west)
- * at the observer's latitude. Rising and setting of a point with right ascension α and
- * declination δ at latitude φ happen at sidereal time α ∓ arcsin(tan φ tan δ) (oblique
- * ascension and descension). The alternative compares ecliptic longitudes.
+ * Combustion (Sūrya Siddhānta 9.2–9, 10.1): a graha is combust within its arc of the Sun.
+ * Default (decided 2026-10-03, as in Sanjay Rath's school): the arc is measured in ecliptic
+ * longitude. The literal SS measure is kept as the alternative: kālāṃśas, degrees of
+ * sidereal time between the risings (graha behind the Sun, seen in the east) or the
+ * settings (graha ahead, seen in the west) at the observer's latitude. Rising and setting
+ * of a point with right ascension α and declination δ at latitude φ happen at sidereal time
+ * α ∓ arcsin(tan φ tan δ) (oblique ascension and descension).
  *
  * Planetary war (SS 7.1, 7.12, 7.19–23; BJ 2.20; PD 4.2): only Mars, Mercury, Jupiter,
  * Venus and Saturn; at war when less than a degree apart; the victor stands to the north.
@@ -39,18 +40,39 @@ export function elongation(c: Chart): number {
   return arc(c.grahas.sun.longitude, c.grahas.moon.longitude);
 }
 
+/** The waning Moon is cruel (BPHS 3.11): through the dark half (default), or while less than half lit. */
+export function moonIsCruel(c: Chart): boolean {
+  const e = elongation(c);
+  return c.settings.waningMoon === 'krishna-paksha' ? e >= 180 : e < 90 || e > 270;
+}
+
+/** The grahas sharing Mercury's sign, split into cruel and gentle (Mercury itself excluded). */
+export function mercuryCompany(c: Chart): { cruel: Graha[]; gentle: Graha[] } {
+  const moonCruel = moonIsCruel(c);
+  const others = (Object.keys(c.grahas) as Graha[]).filter((g) => g !== 'mercury' && c.grahas[g].sign === c.grahas.mercury.sign);
+  const isCruel = (g: Graha) => g === 'sun' || g === 'mars' || g === 'saturn' || g === 'rahu' || g === 'ketu' || (g === 'moon' && moonCruel);
+  return { cruel: others.filter(isCruel), gentle: others.filter((g) => !isCruel(g)) };
+}
+
 /**
- * Cruel grahas of a chart (BPHS 3.11). Default reading: the Moon is cruel while less than
- * half lit (elongation < 90° or > 270°, Kṛṣṇa Aṣṭamī to Śukla Aṣṭamī); Mercury is cruel when
- * in the same sign as a cruel graha other than the Moon.
+ * Mercury joined by as many cruel as gentle grahas: the majority rule says nothing, and the
+ * default (gentle) is provisional ('mercury-tie').
+ */
+export function mercuryTie(c: Chart): boolean {
+  const m = mercuryCompany(c);
+  return c.settings.mercuryCruel === 'majority' && m.cruel.length > 0 && m.cruel.length === m.gentle.length;
+}
+
+/**
+ * Cruel grahas of a chart (BPHS 3.11). Defaults (decided 2026-10-03, after P.V.R. Narasimha
+ * Rao): the Moon is cruel in the dark half; Mercury is cruel when more cruel than gentle
+ * grahas share its sign. Alternatives: settings.waningMoon, settings.mercuryCruel.
  */
 export function crueltyOf(c: Chart): Record<Graha, boolean> {
-  const e = elongation(c);
-  const moonCruel = e < 90 || e > 270;
-  const base: Graha[] = ['sun', 'mars', 'saturn', 'rahu', 'ketu'];
-  const cruel = new Set<Graha>(base);
-  if (moonCruel) cruel.add('moon');
-  if (base.some((g) => c.grahas[g].sign === c.grahas.mercury.sign)) cruel.add('mercury');
+  const cruel = new Set<Graha>(['sun', 'mars', 'saturn', 'rahu', 'ketu']);
+  if (moonIsCruel(c)) cruel.add('moon');
+  const m = mercuryCompany(c);
+  if (c.settings.mercuryCruel === 'majority' ? m.cruel.length > m.gentle.length : m.cruel.length > 0) cruel.add('mercury');
   const out = {} as Record<Graha, boolean>;
   for (const g of Object.keys(c.grahas) as Graha[]) out[g] = cruel.has(g);
   return out;

@@ -155,8 +155,8 @@ const STEP = 0.25; // days: every angle here moves < 20° per step
 const SEARCH = 3; // days: no limb lasts longer
 
 /** Last time ≤ t at which the increasing angle f passes target. */
-function lastCrossing(f: (t: number) => number, target: number, t: number, days = SEARCH): number {
-  const r = findCrossings(f, target, t - days, t + 1e-9, { step: STEP, angular: true });
+export function lastCrossing(f: (t: number) => number, target: number, t: number, days = SEARCH, step = STEP): number {
+  const r = findCrossings(f, target, t - days, t + 1e-9, { step, angular: true });
   if (!r.length) throw new Error(`pañcāṅga: no crossing of ${target}° in the ${days} days before JD ${t}`);
   return r[r.length - 1]!;
 }
@@ -328,6 +328,6 @@ export function panchang(swe: SwissEph, at: Instant, place: Place, s: JyotishSet
     muhurtas: { day: dayMuhurtas, night: nightMuhurtas },
     abhijit: dayMuhurtas[7]!,
     precision,
-    provisional: ['hora-length', 'karana-fixed-order', 'lunar-month', 'samvatsara', 'ritu', 'ayana', 'rahu-kala', 'muhurta'],
+    provisional: ['hora-length', 'lunar-month', 'samvatsara', 'ritu', 'ayana', 'rahu-kala', 'muhurta'],
   };
 }

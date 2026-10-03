@@ -11,7 +11,7 @@ import { argala, jaimini, type Argala, type Jaimini } from './jaimini.ts';
 import { ashtakavarga, type Ashtakavarga } from './ashtakavarga.ts';
 import { shadbala, type Shadbala } from './shadbala.ts';
 import { charaDasha, vimshottari, yogini, type CharaDasha, type DashaRun } from './dasha.ts';
-import { combustion, crueltyOf, wars, type Combustion, type War } from './states.ts';
+import { combustion, crueltyOf, mercuryTie, wars, type Combustion, type War } from './states.ts';
 import { allVargas, type Varga, type VargaPosition } from './vargas.ts';
 import type { RuleId } from './sources.ts';
 
@@ -43,7 +43,7 @@ export function kundali(c: Chart): Kundali {
     dignities[g] = dignity(g, lon[g], signs);
   }
   const cruel = crueltyOf(c);
-  const j = jaimini(c.lagna, lon, s.karakas);
+  const j = jaimini(c.lagna, lon, s.karakas, s.sevenKarakas);
   const arg = Array.from({ length: 12 }, (_, i) => argala(addSigns(c.lagna, i), lon, cruel));
   const av = ashtakavarga(lon, c.lagna, s.ashtakavarga);
   const sb = shadbala(c);
@@ -61,10 +61,9 @@ export function kundali(c: Chart): Kundali {
     ...sb.provisional,
     ...dashas.vimshottari.provisional,
     ...dashas.chara.provisional,
-    'benefic-malefic',
-    'combustion',
     ...ws.flatMap((w) => w.provisional),
   ]);
+  if (mercuryTie(c)) provisional.add('mercury-tie');
   if (s.vargas.hora === 'parashara' || s.vargas.drekkana === 'parashara') provisional.add('varga-hora-drekkana');
   provisional.add('varga-trimshamsha-signs');
   return { chart: c, vargas, dignities, cruel, combustion: combustion(c), wars: ws, jaimini: j, argala: arg, ashtakavarga: av, shadbala: sb, dashas, provisional: [...provisional] };

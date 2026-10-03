@@ -35,10 +35,21 @@ describe('sources', () => {
     }
   });
 
+  it('the six decisions of 2026-10-03 are canon', () => {
+    for (const id of ['karana-fixed-order', 'combustion', 'benefic-malefic', 'karaka-seven', 'abda-masa-bala'] as const) {
+      expect((RULES[id] as Rule).status, id).toBe('canon');
+      expect((RULES[id] as Rule).decided, id).toBeTruthy();
+    }
+  });
+
   it('every pending or unsourced rule says what is open and what the default is', () => {
     for (const [id, r] of rules) {
       if (r.status === 'canon') expect(r.open, id).toBeUndefined();
       else expect(r.open?.length, id).toBeGreaterThan(20);
+      if (r.decided) {
+        expect(r.status, id).toBe('canon');
+        expect(r.decided, id).toMatch(/^Nilesh, \d{4}-\d{2}-\d{2}: /);
+      }
       if (r.status !== 'unsourced' && id !== 'dasha-year') expect(r.verses.length, id).toBeGreaterThan(0);
       expect(r.yantra.length, id).toBeGreaterThan(20);
     }

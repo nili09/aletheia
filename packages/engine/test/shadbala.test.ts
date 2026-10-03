@@ -101,6 +101,35 @@ describe('lords of the year and month (SS 1.51–52)', () => {
   });
 });
 
+describe('lords of the year and month by saṅkrānti (decided 2026-10-03)', () => {
+  it('the chart’s saṅkrāntis are the Sun’s sign entries, and the lords are their vāra weekday lords', () => {
+    const delhi2 = { latitude: 28.6139, longitude: 77.209 };
+    for (const iso of ['1990-05-17T04:30:00Z', '2024-01-14T20:00:00Z', '2026-10-03T06:30:00Z']) {
+      const c = engine.chart({ unixMs: Date.parse(iso) }, delhi2);
+      const { latest, mesha } = c.sankranti;
+      expect(latest.instant.jdTT).toBeLessThanOrEqual(c.instant.jdTT);
+      expect(mesha.instant.jdTT).toBeLessThanOrEqual(c.instant.jdTT);
+      expect(c.instant.jdTT - mesha.instant.jdTT).toBeLessThan(366);
+      // The Sun is on the boundary at each (to 1e-6°), and in the sign it entered.
+      const lonAt = (t: number) => engine.position({ jdTT: t }, 'sun').sidereal.longitude;
+      expect(Math.abs((((lonAt(latest.instant.jdTT) - latest.sign * 30) + 540) % 360) - 180)).toBeLessThan(1e-6);
+      expect(Math.abs(((lonAt(mesha.instant.jdTT) + 540) % 360) - 180)).toBeLessThan(1e-6);
+      expect(c.grahas.sun.sign).toBe(latest.sign);
+      // The weekday is the vāra (sunrise to sunrise) at the place.
+      expect(latest.vara).toBe(engine.panchang({ jdTT: latest.instant.jdTT }, delhi2).vara.index);
+      expect(mesha.vara).toBe(engine.panchang({ jdTT: mesha.instant.jdTT }, delhi2).vara.index);
+      const sb = shadbala(c);
+      expect(sb.lords.year).toBe(SEVEN[mesha.vara]);
+      expect(sb.lords.month).toBe(SEVEN[latest.vara]);
+      expect(sb.provisional).not.toContain('abda-masa-bala');
+      // The alternative: the Sūrya Siddhānta day-count.
+      const ss = shadbala({ ...c, settings: { ...c.settings, yearMonthLords: 'surya-siddhanta' } });
+      const jdn = Math.floor(c.sunrise.jdUT + 0.5 + c.place.longitude / 360);
+      expect(ss.lords).toMatchObject(ssYearMonthLords(jdn));
+    }
+  });
+});
+
 describe('mean longitudes for ceṣṭā (Meeus Table 31.A) against the ephemeris', () => {
   it('true heliocentric − mean stays within the equation of centre and averages out, 1800–2400', () => {
     // Max |true − mean|: equation of centre 2e (rad) plus a margin for perturbations
